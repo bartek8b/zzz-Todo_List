@@ -1,0 +1,36 @@
+{
+  "name": "webpack-template",
+  "version": "1.0.0",
+  "description": "Template repo for projects using webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "set-branch": "git branch gh-pages",
+    "change-branch": "git checkout gh-pages && git merge main --no-edit",
+    "build": "webpack",
+    "dev": "webpack serve",
+    "commit-dist": "git add dist -f && git commit -m \"Deployment commit\"",
+    "push-gh-pages": "git subtree push --prefix dist origin gh-pages",
+    "checkout": "git checkout main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartek8b/webpack-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bartek8b/webpack-template/issues"
+  },
+  "homepage": "https://github.com/bartek8b/webpack-template#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
