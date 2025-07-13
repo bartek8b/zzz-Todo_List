@@ -5,8 +5,7 @@ export class Project {
 
   todos = [];
 }
-
-export const projects = [];
+export let projects = [];
 
 export class Todo {
   constructor(title, despription, dueDate, priority, notes) {
