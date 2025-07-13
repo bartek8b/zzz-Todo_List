@@ -16,12 +16,12 @@ function createProject(name) {
   }
 }
 
-function createTodo(project, title, despription, dueDate, priority, notes) {
+function createTodo(project, title, description, dueDate, priority, notes) {
   createProject(project);
   const projectName = nameValidator(project);
   for (const p of projects) {
     if (p.name === projectName) {
-      p.todos.push(new Todo(title, despription, dueDate, priority, notes));
+      p.todos.push(new Todo(title, description, dueDate, priority, notes));
     }
   }
 }
