@@ -20,4 +20,5 @@ export class Todo {
   }
 }
 
+// Maybe should be moved to different part of program (entry?)
 projects.push(new Project("DEFAULT"));
