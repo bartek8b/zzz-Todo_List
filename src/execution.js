@@ -1,10 +1,26 @@
 import { Project, Todo, projects } from "./data";
 
-function createProject(name) {
-  const validName = name.trim().toUpperCase();
-  const projectExist = (p) => p.name === validName;
+function nameValidator(name){
+    return name.trim().toUpperCase();
+}
 
-  if (!projects.some(projectExist)) {
+function isProject(name) {
+  const validName = nameValidator(name);
+  return projects.some((p) => p.name === validName);
+}
+
+function createProject(name) {
+  const validName = nameValidator(name);
+  if (!isProject(name)) {
     projects.push(new Project(validName));
   }
 }
+
+// function createTodo(project, title, despription, dueDate, priority, notes) {
+//   if (!projects.project) {
+//     createProject(project);
+//   }
+//   projects.project.todos.push(
+//     new Todo(title, despription, dueDate, priority, notes)
+//   );
+// }

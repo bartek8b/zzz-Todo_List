@@ -9,8 +9,7 @@ export class Project {
 export const projects = [];
 
 export class Todo {
-  constructor(project, title, despription, dueDate, priority, notes) {
-    this.project = project;
+  constructor(title, despription, dueDate, priority, notes) {
     this.title = title;
     this.despription = despription;
     this.dueDate = dueDate;
