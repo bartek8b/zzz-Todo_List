@@ -8,7 +8,7 @@ export class Project {
 
 export const projects = [
   {
-    name: "Default",
+    name: "DEFAULT",
     todos: [],
   },
 ];
