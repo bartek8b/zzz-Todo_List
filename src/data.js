@@ -14,7 +14,8 @@ export const projects = [
 ];
 
 export class Todo {
-  constructor(title, despription, dueDate, priority, notes) {
+  constructor(project, title, despription, dueDate, priority, notes) {
+    this._project = project;
     this._title = title;
     this._despription = despription;
     this._dueDate = dueDate;
