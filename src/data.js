@@ -1,26 +1,23 @@
 export class Project {
   constructor(name) {
-    this._name = name;
+    this.name = name;
   }
 
   todos = [];
 }
 
-export const projects = [
-  {
-    name: "DEFAULT",
-    todos: [],
-  },
-];
+export const projects = [];
 
 export class Todo {
   constructor(project, title, despription, dueDate, priority, notes) {
-    this._project = project;
-    this._title = title;
-    this._despription = despription;
-    this._dueDate = dueDate;
-    this._priority = priority;
-    this._notes = notes;
-    this._done = false;
+    this.project = project;
+    this.title = title;
+    this.despription = despription;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.notes = notes;
+    this.done = false;
   }
 }
+
+projects.push(new Project("DEFAULT"));
