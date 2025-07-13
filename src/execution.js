@@ -13,6 +13,8 @@ function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
     projects.push(new Project(validName));
+  } else {
+    console.log("The project already exist");
   }
 }
 
@@ -21,7 +23,15 @@ function createTodo(project, title, description, dueDate, priority, notes) {
   const projectName = nameValidator(project);
   for (const p of projects) {
     if (p.name === projectName) {
-      p.todos.push(new Todo(title, description, dueDate, priority, notes));
+      const validTitle = nameValidator(title);
+      const findTodo = p.todos.find((t) => t.title === validTitle);
+      if (!findTodo) {
+        p.todos.push(
+          new Todo(validTitle, description, dueDate, priority, notes)
+        );
+      } else {
+        console.log("The task already exist");
+      }
     }
   }
 }
