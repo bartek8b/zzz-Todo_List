@@ -1,7 +1,7 @@
 import { Project, Todo, projects } from "./data";
 
-function nameValidator(name){
-    return name.trim().toUpperCase();
+function nameValidator(name) {
+  return name.trim().toUpperCase();
 }
 
 function isProject(name) {
@@ -10,17 +10,18 @@ function isProject(name) {
 }
 
 function createProject(name) {
-  const validName = nameValidator(name);
   if (!isProject(name)) {
+    const validName = nameValidator(name);
     projects.push(new Project(validName));
   }
 }
 
-// function createTodo(project, title, despription, dueDate, priority, notes) {
-//   if (!projects.project) {
-//     createProject(project);
-//   }
-//   projects.project.todos.push(
-//     new Todo(title, despription, dueDate, priority, notes)
-//   );
-// }
+function createTodo(project, title, despription, dueDate, priority, notes) {
+  createProject(project);
+  const projectName = nameValidator(project);
+  for (const p of projects) {
+    if (p.name === projectName) {
+      p.todos.push(new Todo(title, despription, dueDate, priority, notes));
+    }
+  }
+}
