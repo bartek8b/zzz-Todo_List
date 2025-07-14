@@ -18,12 +18,17 @@ function createProject(name) {
   }
 }
 
-function editProject(){
-  
-}
+function editProject() {}
 
-function deleteProject(){
-  
+function deleteProject(name) {
+  const projectName = nameValidator(name);
+  const toDelete = projects.find((p) => p.name === projectName);
+  const index = projects.indexOf(toDelete);
+  if (index !== -1) {
+    projects.splice(index, 1);
+  } else {
+    console.log("Such project doesn't exist");
+  }
 }
 
 function createTodo(project, title, description, dueDate, priority) {
@@ -34,9 +39,7 @@ function createTodo(project, title, description, dueDate, priority) {
       const validTitle = nameValidator(title);
       const findTodo = p.todos.find((t) => t.title === validTitle);
       if (!findTodo) {
-        p.todos.push(
-          new Todo(validTitle, description, dueDate, priority)
-        );
+        p.todos.push(new Todo(validTitle, description, dueDate, priority));
       } else {
         console.log("The task already exists");
       }
@@ -44,10 +47,6 @@ function createTodo(project, title, description, dueDate, priority) {
   }
 }
 
-function editTodo(){
-  
-}
+function editTodo() {}
 
-function deleteTodo(){
-  
-}
+function deleteTodo() {}
