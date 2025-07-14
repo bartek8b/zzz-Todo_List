@@ -14,8 +14,16 @@ function createProject(name) {
     const validName = nameValidator(name);
     projects.push(new Project(validName));
   } else {
-    console.log("The project already exist");
+    console.log("The project already exists");
   }
+}
+
+function editProject(){
+  
+}
+
+function deleteProject(){
+  
 }
 
 function createTodo(project, title, description, dueDate, priority) {
@@ -30,8 +38,16 @@ function createTodo(project, title, description, dueDate, priority) {
           new Todo(validTitle, description, dueDate, priority)
         );
       } else {
-        console.log("The task already exist");
+        console.log("The task already exists");
       }
     }
   }
+}
+
+function editTodo(){
+  
+}
+
+function deleteTodo(){
+  
 }
