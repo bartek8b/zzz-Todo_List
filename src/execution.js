@@ -18,7 +18,7 @@ function createProject(name) {
   }
 }
 
-function createTodo(project, title, description, dueDate, priority, notes) {
+function createTodo(project, title, description, dueDate, priority) {
   createProject(project);
   const projectName = nameValidator(project);
   for (const p of projects) {
@@ -27,7 +27,7 @@ function createTodo(project, title, description, dueDate, priority, notes) {
       const findTodo = p.todos.find((t) => t.title === validTitle);
       if (!findTodo) {
         p.todos.push(
-          new Todo(validTitle, description, dueDate, priority, notes)
+          new Todo(validTitle, description, dueDate, priority)
         );
       } else {
         console.log("The task already exist");
