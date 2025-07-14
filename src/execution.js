@@ -9,7 +9,7 @@ function isProject(name) {
   return projects.some((p) => p.name === validName);
 }
 
-function spotItem(array, property, condition){
+function spotItem(array, property, condition) {
   return array.find((e) => e[property] === condition);
 }
 
@@ -22,7 +22,20 @@ export function createProject(name) {
   }
 }
 
-function editProject() {}
+export function editProject(name, newName) {
+  const oldName = nameValidator(name);
+  const validNewName = nameValidator(newName);
+  const project = spotItem(projects, "name", oldName);
+  if (!project) {
+    console.log("Such project doesn't exist");
+    return;
+  }
+  if (spotItem(projects, "name", validNewName)) {
+    console.log("Project with the new name already exists");
+    return;
+  }
+  project.name = validNewName;
+}
 
 export function deleteProject(name) {
   const projectName = nameValidator(name);
