@@ -48,11 +48,11 @@ export function deleteProject(name) {
   }
 }
 
-export function createTodo(project, title, description, dueDate, priority) {
-  createProject(project);
-  const projectName = nameValidator(project);
+export function createTodo(projectName, title, description, dueDate, priority) {
+  createProject(projectName);
+  const validProjectName = nameValidator(projectName);
   for (const p of projects) {
-    if (p.name === projectName) {
+    if (p.name === validProjectName) {
       const validTitle = nameValidator(title);
       const findTodo = spotItem(p.todos, "title", validTitle);
       if (!findTodo) {
@@ -66,4 +66,19 @@ export function createTodo(project, title, description, dueDate, priority) {
 
 function editTodo() {}
 
-function deleteTodo() {}
+export function deleteTodo(projectName, title) {
+  const validProjectName = nameValidator(projectName);
+  const project = spotItem(projects, "name", validProjectName);
+  if (!project) {
+    console.log("Such project doesn't exist");
+    return;
+  }
+  const validTitle = nameValidator(title);
+  const toDelete = spotItem(project.todos, "title", validTitle);
+  if (!toDelete) {
+    console.log("Such task doesn't exist");
+    return;
+  }
+  const index = project.todos.indexOf(toDelete);
+  project.todos.splice(index, 1);
+}
