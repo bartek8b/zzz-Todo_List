@@ -1,9 +1,8 @@
 export class Project {
   constructor(name) {
     this.name = name;
-  }
-
-  todos = [];
+    this.todos = [];
+  }  
 }
 export let projects = [];
 
