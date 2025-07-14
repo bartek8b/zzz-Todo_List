@@ -15,6 +15,3 @@ export class Todo {
     this.done = false;
   }
 }
-
-// Maybe should be moved to different part of program (entry?)
-projects.push(new Project("DEFAULT"));
