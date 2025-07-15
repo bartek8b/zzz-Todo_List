@@ -62,8 +62,28 @@ export function createTodo(projectName, title, description, dueDate, priority) {
   }
 }
 
-function editTodo(projectName, newPprojectName, title, newTitle, newDescription, newDueDate, newPriority) {
-
+function editTodo(
+  projectName,
+  newPprojectName,
+  title,
+  newTitle,
+  newDescription,
+  newDueDate,
+  newPriority
+) {
+  const validProjectName = nameValidator(projectName);
+  const project = spotItem(projects, "name", validProjectName);
+  if (!project) {
+    throw new Error("Such project doesn't exist");
+  }
+  const validTitle = nameValidator(title);
+  const toEdit = spotItem(project.todos, "title", validTitle);
+  if (!toEdit) {
+    throw new Error("Such task doesn't exist");
+  }
+  const index = project.todos.indexOf(toEdit);
+  project.todos.splice(index, 1);
+  createTodo(newPprojectName,newTitle, newDescription, newDueDate, newPriority);
 }
 
 export function deleteTodo(projectName, title) {
