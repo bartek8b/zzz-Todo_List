@@ -18,7 +18,7 @@ export function createProject(name) {
     const validName = nameValidator(name);
     projects.push(new Project(validName));
   } else {
-    throw new Error("The project already exists");
+    console.log("The project already exists");
   }
 }
 
@@ -30,7 +30,7 @@ export function editProject(name, newName) {
     throw new Error("Such project doesn't exist");
   }
   if (spotItem(projects, "name", validNewName)) {
-    throw new Error("Such project doesn't exist");
+    throw new Error("The project already exists");
   }
   project.name = validNewName;
 }
@@ -54,7 +54,9 @@ export function createTodo(projectName, title, description, dueDate, priority) {
       const validTitle = nameValidator(title);
       const findTodo = spotItem(p.todos, "title", validTitle);
       if (!findTodo) {
-        p.todos.push(new Todo(validTitle, description, dueDate, priority));
+        p.todos.push(
+          new Todo(validTitle, description.trim(), dueDate, priority)
+        );
       } else {
         throw new Error("The task already exists");
       }
@@ -62,9 +64,9 @@ export function createTodo(projectName, title, description, dueDate, priority) {
   }
 }
 
-function editTodo(
+export function editTodo(
   projectName,
-  newPprojectName,
+  newProjectName,
   title,
   newTitle,
   newDescription,
@@ -81,9 +83,22 @@ function editTodo(
   if (!toEdit) {
     throw new Error("Such task doesn't exist");
   }
-  const index = project.todos.indexOf(toEdit);
-  project.todos.splice(index, 1);
-  createTodo(newPprojectName,newTitle, newDescription, newDueDate, newPriority);
+  if (validProjectName !== nameValidator(newProjectName)) {
+    const index = project.todos.indexOf(toEdit);
+    project.todos.splice(index, 1);
+    createTodo(
+      newProjectName,
+      newTitle,
+      newDescription,
+      newDueDate,
+      newPriority
+    );
+  } else {
+    toEdit.title = nameValidator(newTitle);
+    toEdit.description = newDescription.trim();
+    toEdit.dueDate = newDueDate;
+    toEdit.priority = newPriority;
+  }
 }
 
 export function deleteTodo(projectName, title) {
