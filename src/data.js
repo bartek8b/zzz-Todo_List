@@ -4,7 +4,6 @@ export class Project {
     this.todos = [];
   }  
 }
-export let projects = [];
 
 export class Todo {
   constructor(title, description, dueDate, priority) {
@@ -15,3 +14,5 @@ export class Todo {
     this.done = false;
   }
 }
+
+export let projects = [];
