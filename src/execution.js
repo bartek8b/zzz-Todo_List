@@ -13,6 +13,11 @@ function spotItem(array, property, condition) {
   return array.find((e) => e[property] === condition);
 }
 
+function setStorage(value) {
+  const data = JSON.stringify(value);
+  localStorage.setItem("data", data);
+}
+
 export function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
@@ -20,6 +25,7 @@ export function createProject(name) {
   } else {
     console.log("The project already exists");
   }
+  setStorage(projects);
 }
 
 export function editProject(name, newName) {
@@ -33,6 +39,7 @@ export function editProject(name, newName) {
     throw new Error("The project already exists");
   }
   project.name = validNewName;
+  setStorage(projects);
 }
 
 export function deleteProject(name) {
@@ -44,6 +51,7 @@ export function deleteProject(name) {
   } else {
     throw new Error("Such project doesn't exist");
   }
+  setStorage(projects);
 }
 
 export function createTodo(projectName, title, description, dueDate, priority) {
@@ -62,6 +70,7 @@ export function createTodo(projectName, title, description, dueDate, priority) {
       }
     }
   }
+  setStorage(projects);
 }
 
 export function editTodo(
@@ -99,6 +108,7 @@ export function editTodo(
     toEdit.dueDate = newDueDate;
     toEdit.priority = newPriority;
   }
+  setStorage(projects);
 }
 
 export function deleteTodo(projectName, title) {
@@ -114,4 +124,5 @@ export function deleteTodo(projectName, title) {
   }
   const index = project.todos.indexOf(toDelete);
   project.todos.splice(index, 1);
+  setStorage(projects);
 }
