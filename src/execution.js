@@ -18,6 +18,23 @@ function setStorage(value) {
   localStorage.setItem("data", data);
 }
 
+export function retrieveStorage() {
+  const data = JSON.parse(localStorage.getItem("data"));
+  let isValidData = false;
+  if (Array.isArray(data)) {
+    isValidData = data.every(
+      (p) =>
+        typeof p === "object" &&
+        typeof p.name === "string" &&
+        Array.isArray(p.todos)
+    );
+  }
+  if (isValidData) {
+    projects.length = 0;
+    projects.push(...data);
+  }
+}
+
 export function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
