@@ -18,7 +18,7 @@ export function createProject(name) {
     const validName = nameValidator(name);
     projects.push(new Project(validName));
   } else {
-    console.log("The project already exists");
+    throw new Error("The project already exists");
   }
 }
 
@@ -27,12 +27,10 @@ export function editProject(name, newName) {
   const validNewName = nameValidator(newName);
   const project = spotItem(projects, "name", oldName);
   if (!project) {
-    console.log("Such project doesn't exist");
-    return;
+    throw new Error("Such project doesn't exist");
   }
   if (spotItem(projects, "name", validNewName)) {
-    console.log("Project with the new name already exists");
-    return;
+    throw new Error("Such project doesn't exist");
   }
   project.name = validNewName;
 }
@@ -44,7 +42,7 @@ export function deleteProject(name) {
   if (index !== -1) {
     projects.splice(index, 1);
   } else {
-    console.log("Such project doesn't exist");
+    throw new Error("Such project doesn't exist");
   }
 }
 
@@ -58,26 +56,26 @@ export function createTodo(projectName, title, description, dueDate, priority) {
       if (!findTodo) {
         p.todos.push(new Todo(validTitle, description, dueDate, priority));
       } else {
-        console.log("The task already exists");
+        throw new Error("The task already exists");
       }
     }
   }
 }
 
-function editTodo() {}
+function editTodo(projectName, newPprojectName, title, newTitle, newDescription, newDueDate, newPriority) {
+
+}
 
 export function deleteTodo(projectName, title) {
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
   if (!project) {
-    console.log("Such project doesn't exist");
-    return;
+    throw new Error("Such project doesn't exist");
   }
   const validTitle = nameValidator(title);
   const toDelete = spotItem(project.todos, "title", validTitle);
   if (!toDelete) {
-    console.log("Such task doesn't exist");
-    return;
+    throw new Error("Such task doesn't exist");
   }
   const index = project.todos.indexOf(toDelete);
   project.todos.splice(index, 1);
