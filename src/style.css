@@ -6,15 +6,19 @@ body {
   color: hsl(var(--font));
 }
 :root {
-  --font: 0, 0%, 10%;
-  --background: 0, 0%, 90%;
+  --font: 222, 42%, 11%;
+  --background: 0, 0%, 80%;
+  --accentCold: 176, 96%, 30%;
+  --accentWarm: 24, 54%, 66%;
 }
 header {
+  background-color: hsl(var(--background), 0.8);
   height: 48px;
   display: flex;
   align-items: center;
 }
 footer {
+  background-color: hsl(var(--background), 0.8);
   height: 24px;
   display: flex;
   align-items: center;
@@ -28,7 +32,6 @@ footer {
 }
 main {
   min-height: calc(100dvh - (48px + 24px));
-  background-color: hsl(var(--background-main));
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
@@ -36,9 +39,14 @@ main > aside {
   background-color: hsl(var(--background));
 }
 main > article {
-  background-color: hsl(var(--background), 0.7);
+  background-color: hsl(var(--background), 0.9);
 }
-@media (max-width: 600px) {
+@media (768px < width <= 1024px) {
+  main {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+@media (width <= 768px)  {
   main {
     grid-template-columns: 1fr;
   }
@@ -48,7 +56,7 @@ main > article {
 }
 /* @media (prefers-color-scheme: dark) {
   :root {
-    --font: 0, 0%, 90%;
-    --background: 0, 0%, 10%;
+    --font: 0, 0%, 80%;
+    --background: 222, 42%, 11%;
   }
 } */
