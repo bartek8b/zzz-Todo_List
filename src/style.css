@@ -143,12 +143,19 @@ img {
   li > button:hover {
     background-color: hsl(var(--accentCold));
   }
-  img{
+  img {
     filter: invert(80%);
   }
 }
 
-@media (width <= 600px) {
+@media (width <= 767px) {
+  body {
+    font-size: calc(1.5rem + 0.02dvw);
+  }
+  .fontTitle {
+    font-family: "title";
+    font-size: calc(1.5rem + 0.3dvw);
+  }
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr minmax(auto, 1fr);
