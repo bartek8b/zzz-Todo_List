@@ -144,4 +144,14 @@ export function deleteTodo(projectName, title) {
   setStorage(projects);
 }
 
-c
+function filterByProject(projectName) {
+  return spotItem(projects, "name", nameValidator(projectName));
+}
+
+function filterByPriority(priority) {
+  const todosByPriority = [];
+  for (const p of projects) {
+    const filtered = p.todos.filter((t) => t.priority === priority);
+    todosByPriority.push(...filtered);
+  }
+}
