@@ -44,6 +44,11 @@ main > aside {
   border-right: 1px solid hsl(var(--accentWarm));
   display: flex;
   flex-direction: column;
+  gap: calc(var(--gapOutside) * 2);
+  padding: var(--gapOutside);
+}
+main > aside p {
+  text-align: center;
 }
 main > article {
   background-color: hsl(var(--background), 0.9);
@@ -63,6 +68,7 @@ li {
 li > button {
   cursor: pointer;
   width: inherit;
+  color: hsl(var(--font));
   padding: var(--gapInside);
   border-radius: var(--gapInside);
   border: none;
@@ -71,19 +77,6 @@ li > button {
 }
 li > button:hover {
   background-color: hsl(var(--accentWarm));
-}
-@media (768px < width <= 1024px) {
-  main {
-    grid-template-columns: 1fr 2fr;
-  }
-}
-@media (width <= 768px) {
-  main {
-    grid-template-columns: 1fr;
-  }
-  main > aside {
-    display: none;
-  }
 }
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -98,5 +91,28 @@ li > button:hover {
   }
   main > aside {
     border-right: 1px solid hsl(var(--accentCold));
+    border-bottom: 1px solid hsl(var(--accentCold));
+  }
+  li > button {
+    outline: 1px solid hsl(var(--accentWarm));
+    background-color: hsl(var(--accentCold), 0.5);
+  }
+  li > button:hover {
+    background-color: hsl(var(--accentCold));
   }
 } */
+@media (768px < width <= 1024px) {
+  main {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+@media (width <= 768px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr minmax(auto, 1fr);
+  }
+  main > aside {
+    border-right: none;
+    border-bottom: 1px solid hsl(var(--accentWarm));
+  }
+}
