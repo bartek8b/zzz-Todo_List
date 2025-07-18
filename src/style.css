@@ -4,7 +4,7 @@ body {
   scroll-behavior: smooth;
   text-wrap: balance;
   color: hsl(var(--font));
-  font-size: calc(1rem + 0.05dvw);
+  font-size: calc(1rem + 0.02dvw);
 }
 :root {
   --font: 222, 42%, 11%;
@@ -38,7 +38,7 @@ footer {
 main {
   min-height: calc(100dvh - (48px + 24px));
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
 }
 main > aside {
   background-color: hsl(var(--background));
@@ -63,23 +63,51 @@ ul {
   gap: var(--gapInside);
   padding: var(--gapInside);
 }
-li {
+ul > li {
   width: 100%;
 }
 li > button {
   cursor: pointer;
-  width: 100%;
+  width: max(100%, calc(var(--gapOutside) * 4));
   color: hsl(var(--font));
   padding: var(--gapInside);
   border-radius: var(--gapInside);
   border: none;
   outline: 1px solid hsl(var(--accentCold));
   background-color: hsl(var(--accentWarm), 0.5);
+  white-space: nowrap;
+  overflow: hidden;
 }
 li > button:hover {
   background-color: hsl(var(--accentWarm));
 }
-/* @media (prefers-color-scheme: dark) {
+ul.projects-list {
+  flex-direction: column;
+}
+.projects-list {
+  flex-direction: column;
+}
+.projects-list > li {
+  display: flex;
+  gap: var(--gapInside);
+}
+img{
+    filter: invert(20%);
+  }
+.projects-list > li > button:not(:first-child) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--gapInside) * 2;
+}
+.projects-list > li > button:not(:first-child) > img{
+  width: calc(var(--gapInside) * 3);
+}
+.projects-list > li > button:first-child {
+  width: calc(100% - var(--gapInside) * 4);
+  text-align: left;
+}
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -101,16 +129,11 @@ li > button:hover {
   li > button:hover {
     background-color: hsl(var(--accentCold));
   }
-} */
-@media (600px < width <= 1024px) {
-  main {
-    grid-template-columns: 1fr 2fr;
+  img{
+    filter: invert(80%);
   }
-  li > button {
-  cursor: pointer;
-  width: 80px;
 }
-}
+
 @media (width <= 600px) {
   main {
     grid-template-columns: 1fr;
