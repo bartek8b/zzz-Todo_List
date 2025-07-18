@@ -5,6 +5,7 @@ body {
   text-wrap: balance;
   color: hsl(var(--font));
   font-size: calc(1rem + 0.02dvw);
+  font-family: text;
 }
 :root {
   --font: 222, 42%, 11%;
@@ -14,12 +15,25 @@ body {
   --gapInside: 8px;
   --gapOutside: 16px;
 }
+@font-face {
+  font-family: "title";
+  src: url(assets/PaperInko.otf);
+}
+@font-face {
+  font-family: "text";
+  src: url(assets/dynapuff.regular.ttf);
+}
+.fontTitle {
+  font-family: "title";
+  font-size: calc(1rem + 0.3dvw);
+}
 header {
   background-color: hsl(var(--background), 0.8);
   height: 48px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid hsl(var(--accentWarm));
+  padding: var(--gapOutside);
 }
 footer {
   background-color: hsl(var(--background), 0.8);
@@ -91,16 +105,16 @@ ul.projects-list {
   display: flex;
   gap: var(--gapInside);
 }
-img{
-    filter: invert(20%);
-  }
+img {
+  filter: invert(20%);
+}
 .projects-list > li > button:not(:first-child) {
   display: flex;
   align-items: center;
   justify-content: center;
   width: var(--gapInside) * 2;
 }
-.projects-list > li > button:not(:first-child) > img{
+.projects-list > li > button:not(:first-child) > img {
   width: calc(var(--gapInside) * 3);
 }
 .projects-list > li > button:first-child {
