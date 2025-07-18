@@ -147,7 +147,6 @@ export function deleteTodo(projectName, title) {
 function filterByProject(projectName) {
   const project = spotItem(projects, "name", nameValidator(projectName));
   return project ? [project] : [];
-
 }
 
 function filterByPriority(array, priority) {

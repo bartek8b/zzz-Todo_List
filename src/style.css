@@ -16,6 +16,7 @@ header {
   height: 48px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid hsl(var(--accentWarm));
 }
 footer {
   background-color: hsl(var(--background), 0.8);
@@ -23,6 +24,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: end;
+  border-top: 1px solid hsl(var(--accentWarm));
   a {
     font-size: 0.8rem;
     text-decoration: none;
@@ -37,6 +39,8 @@ main {
 }
 main > aside {
   background-color: hsl(var(--background));
+  display: flex;
+  border-right: 1px solid hsl(var(--accentWarm));
 }
 main > article {
   background-color: hsl(var(--background), 0.9);
@@ -46,7 +50,7 @@ main > article {
     grid-template-columns: 1fr 2fr;
   }
 }
-@media (width <= 768px)  {
+@media (width <= 768px) {
   main {
     grid-template-columns: 1fr;
   }
@@ -58,5 +62,14 @@ main > article {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
+  }
+  header {
+    border-bottom: 1px solid hsl(var(--accentCold));
+  }
+  footer {
+    border-top: 1px solid hsl(var(--accentCold));
+  }
+  main > aside {
+    border-right: 1px solid hsl(var(--accentCold));
   }
 } */
