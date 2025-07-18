@@ -157,8 +157,16 @@ function filterByPriority(array, priority) {
   return todosByPriority;
 }
 
-function filterDueDate(array, daysLeft) {
+function filterDueDate(array, days) {
   const todosByDueDate = [];
   const today = new Date();
-  
+  for (const p of array) {
+    for (const t of array.todos) {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      if (dayLeft <= days) {
+        todosByDueDate.push(t);
+      }
+    }
+  }
+  return todosByDueDate;
 }
