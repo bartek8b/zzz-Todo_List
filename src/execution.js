@@ -143,3 +143,5 @@ export function deleteTodo(projectName, title) {
   project.todos.splice(index, 1);
   setStorage(projects);
 }
+
+c
