@@ -148,10 +148,17 @@ function filterByProject(projectName) {
   return spotItem(projects, "name", nameValidator(projectName));
 }
 
-function filterByPriority(priority) {
+function filterByPriority(array, priority) {
   const todosByPriority = [];
-  for (const p of projects) {
+  for (const p of array) {
     const filtered = p.todos.filter((t) => t.priority === priority);
     todosByPriority.push(...filtered);
   }
+  return todosByPriority;
+}
+
+function filterDueDate(array, daysLeft) {
+  const todosByDueDate = [];
+  const today = new Date();
+  
 }
