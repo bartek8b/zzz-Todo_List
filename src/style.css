@@ -10,6 +10,8 @@ body {
   --background: 0, 0%, 80%;
   --accentCold: 176, 96%, 30%;
   --accentWarm: 24, 54%, 66%;
+  --gapInside: 8px;
+  --gapOutside: 16px;
 }
 header {
   background-color: hsl(var(--background), 0.8);
@@ -39,11 +41,36 @@ main {
 }
 main > aside {
   background-color: hsl(var(--background));
-  display: flex;
   border-right: 1px solid hsl(var(--accentWarm));
+  display: flex;
+  flex-direction: column;
 }
 main > article {
   background-color: hsl(var(--background), 0.9);
+}
+ul {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--gapInside);
+  padding: var(--gapInside);
+}
+li {
+  width: 100%;
+}
+li > button {
+  cursor: pointer;
+  width: inherit;
+  padding: var(--gapInside);
+  border-radius: var(--gapInside);
+  border: none;
+  outline: 1px solid hsl(var(--accentCold));
+  background-color: hsl(var(--accentWarm), 0.5);
+}
+li > button:hover {
+  background-color: hsl(var(--accentWarm));
 }
 @media (768px < width <= 1024px) {
   main {
