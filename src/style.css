@@ -6,6 +6,7 @@ body {
   color: hsl(var(--font));
   font-size: calc(1rem + 0.02dvw);
   font-family: text;
+  width: 100vw;
 }
 :root {
   --font: 222, 42%, 11%;
@@ -149,13 +150,6 @@ img {
 }
 
 @media (width <= 767px) {
-  body {
-    font-size: calc(1.5rem + 0.02dvw);
-  }
-  .fontTitle {
-    font-family: "title";
-    font-size: calc(1.5rem + 0.3dvw);
-  }
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr minmax(auto, 1fr);
