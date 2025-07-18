@@ -6,7 +6,6 @@ body {
   color: hsl(var(--font));
   font-size: calc(1rem + 0.02dvw);
   font-family: text;
-  width: 100vw;
 }
 :root {
   --font: 222, 42%, 11%;
@@ -135,7 +134,6 @@ img {
   }
   main > aside {
     border-right: 1px solid hsl(var(--accentCold));
-    border-bottom: 1px solid hsl(var(--accentCold));
   }
   li > button {
     outline: 1px solid hsl(var(--accentWarm));
@@ -157,5 +155,10 @@ img {
   main > aside {
     border-right: none;
     border-bottom: 1px solid hsl(var(--accentWarm));
+  }
+}
+@media (prefers-color-scheme: dark) and (width <= 767px) {
+  main > aside {
+    border-bottom: 1px solid hsl(var(--accentCold));
   }
 }
