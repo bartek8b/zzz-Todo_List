@@ -4,6 +4,7 @@ body {
   scroll-behavior: smooth;
   text-wrap: balance;
   color: hsl(var(--font));
+  font-size: calc(1rem + 0.05dvw);
 }
 :root {
   --font: 222, 42%, 11%;
@@ -67,7 +68,7 @@ li {
 }
 li > button {
   cursor: pointer;
-  width: inherit;
+  width: 100%;
   color: hsl(var(--font));
   padding: var(--gapInside);
   border-radius: var(--gapInside);
@@ -101,12 +102,16 @@ li > button:hover {
     background-color: hsl(var(--accentCold));
   }
 } */
-@media (768px < width <= 1024px) {
+@media (600px < width <= 1024px) {
   main {
     grid-template-columns: 1fr 2fr;
   }
+  li > button {
+  cursor: pointer;
+  width: 80px;
 }
-@media (width <= 768px) {
+}
+@media (width <= 600px) {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr minmax(auto, 1fr);
