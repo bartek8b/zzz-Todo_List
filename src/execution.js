@@ -97,7 +97,8 @@ export function editTodo(
   newTitle,
   newDescription,
   newDueDate,
-  newPriority
+  newPriority,
+  newChecked
 ) {
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
@@ -124,6 +125,7 @@ export function editTodo(
     toEdit.description = newDescription.trim();
     toEdit.dueDate = newDueDate;
     toEdit.priority = newPriority;
+    toEdit.checked = newChecked;
   }
   setStorage(projects);
 }
