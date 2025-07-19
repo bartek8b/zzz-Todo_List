@@ -147,6 +147,15 @@ img {
 .checked {
   outline: 2px solid hsl(var(--accentCold));
 }
+.prior-high {
+  border-left: 4px solid hsl(0, 100%, 50%, .7);
+}
+.prior-mid {
+  border-left: 4px solid hsl(60, 100%, 50%, .7);
+}
+.prior-low {
+  border-left: 4px solid hsl(120, 100%, 25%, .7);
+}
 /* ARTICLE - TODOS GRID */
 main > article {
   background-color: hsl(var(--background), 0.9);
@@ -172,7 +181,8 @@ main > article {
   display: flex;
   flex-direction: column;
 }
-.data-set > strong, .data-set > p {
+.data-set > strong,
+.data-set > p {
   align-self: center;
   /* to be checked */
   scrollbar-width: auto;
