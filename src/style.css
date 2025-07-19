@@ -5,6 +5,7 @@ body {
   text-wrap: balance;
   color: hsl(var(--font));
   font-size: calc(1rem + 0.02dvw);
+  font-size: calc(1rem + 0.02dvw);
   font-family: text, Arial, Helvetica, sans-serif;
 }
 *:not(article)::selection {
@@ -34,6 +35,9 @@ article::selection {
   font-family: title, Helvetica, Arial, sans-serif;
   font-size: calc(1rem + 0.3dvw);
 }
+.logo {
+  font-size: calc(1.5rem + 0.02dvw);
+}
 header {
   background-color: hsl(var(--background), 0.8);
   height: 48px;
@@ -62,6 +66,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+/* MENU, SELECTORS, BUTTONS */
 main > aside {
   background-color: hsl(var(--background));
   display: flex;
@@ -71,9 +76,6 @@ main > aside {
 }
 main > aside p {
   text-align: center;
-}
-main > article {
-  background-color: hsl(var(--background), 0.9);
 }
 main > aside ul {
   list-style: none;
@@ -96,14 +98,14 @@ button {
   background-color: hsl(var(--accentWarm), 0.5);
   white-space: nowrap;
   overflow: hidden;
-  transition: .05s linear;
+  transition: 0.05s linear;
 }
 button:hover {
   background-color: hsl(var(--accentWarm));
 }
-button:active{
+button:active {
   transform: rotateX(90deg);
-  opacity: 0;  
+  opacity: 0;
 }
 main > aside li > button {
   width: max(100%, calc(var(--gapOutside) * 4));
@@ -141,19 +143,36 @@ img {
 .header-btns-container > button {
   width: max(100px, 15dvw);
 }
-article{
+.checked {
+  outline: 2px solid hsl(var(--accentCold));
+}
+/* ARTICLE - TODOS GRID */
+main > article {
+  background-color: hsl(var(--background), 0.9);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(var(--gapOutside) * 20), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(calc(var(--gapOutside) * 20), 1fr)
+  );
   grid-template-rows: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   padding: var(--gapOutside);
   gap: var(--gapOutside);
 }
+.grid-container > div {
+  background-color: hsl(var(--accentWarm), 0.2);
+  border-radius: var(--gapOutside);
+  box-shadow: 1px 1px 3px hsl(var(--accentCold), 0.5);
+}
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
+  }
+  article::selection {
+    background-color: hsl(var(--accentWarm));
+    color: hsl(var(--accentCold));
   }
   header {
     border-bottom: 1px solid hsl(var(--accentCold));
@@ -167,14 +186,18 @@ article{
   button:hover {
     background-color: hsl(var(--accentCold));
   }
+  .checked {
+    outline: 2px solid hsl(var(--accentWarm));
+  }
   img {
     filter: invert(80%);
   }
-  article::selection {
-    background-color: hsl(var(--accentWarm));
-    color: hsl(var(--accentCold));
+
+  .grid-container > div {
+    box-shadow: 1px 1px 2px hsl(var(--accentWarm), 0.5);
+    background-color: hsl(var(--accentCold), 0.2);
   }
-} */
+}
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
