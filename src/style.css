@@ -37,10 +37,11 @@ article::selection {
 header {
   background-color: hsl(var(--background), 0.8);
   height: 48px;
-  display: flex;
-  align-items: center;
   border-bottom: 1px solid hsl(var(--accentWarm));
   padding: var(--gapOutside);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 footer {
   background-color: hsl(var(--background), 0.8);
