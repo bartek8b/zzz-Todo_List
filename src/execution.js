@@ -97,8 +97,7 @@ export function editTodo(
   newTitle,
   newDescription,
   newDueDate,
-  newPriority,
-  newChecked
+  newPriority
 ) {
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
@@ -125,7 +124,6 @@ export function editTodo(
     toEdit.description = newDescription.trim();
     toEdit.dueDate = newDueDate;
     toEdit.priority = newPriority;
-    toEdit.checked = newChecked;
   }
   setStorage(projects);
 }
@@ -144,6 +142,23 @@ export function deleteTodo(projectName, title) {
   const index = project.todos.indexOf(toDelete);
   project.todos.splice(index, 1);
   setStorage(projects);
+}
+
+export function editChecked(projectName, title, checked) {
+  const validProjectName = nameValidator(projectName);
+  const project = spotItem(projects, "name", validProjectName);
+  if (project) {
+    const validTitle = nameValidator(title);
+    const todo = spotItem(project.todos, "title", validTitle);
+    if (todo) {
+      todo.checked = checked;
+      setStorage(projects);
+    } else {
+      throw new Error("The task doesn't exists");
+    }
+  } else {
+    throw new Error("Such project doesn't exist");
+  }
 }
 
 function filterByProject(projectName) {
@@ -173,3 +188,4 @@ function filterDueDate(array, days) {
   }
   return todosByDueDate;
 }
+
