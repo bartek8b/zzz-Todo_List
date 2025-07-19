@@ -75,7 +75,7 @@ main > aside p {
 main > article {
   background-color: hsl(var(--background), 0.9);
 }
-ul {
+main > aside ul {
   list-style: none;
   width: 100%;
   margin: 0;
@@ -84,22 +84,24 @@ ul {
   gap: var(--gapInside);
   padding: var(--gapInside);
 }
-ul > li {
+main > aside ul > li {
   width: 100%;
 }
-li > button {
+button {
   cursor: pointer;
-  width: max(100%, calc(var(--gapOutside) * 4));
   color: hsl(var(--font));
-  padding: var(--gapInside);
   border-radius: var(--gapInside);
+  padding: var(--gapInside);
   border: none;
   background-color: hsl(var(--accentWarm), 0.5);
   white-space: nowrap;
   overflow: hidden;
 }
-li > button:hover {
+button:hover {
   background-color: hsl(var(--accentWarm));
+}
+main > aside li > button {
+  width: max(100%, calc(var(--gapOutside) * 4));
 }
 ul.projects-list {
   flex-direction: column;
@@ -127,7 +129,14 @@ img {
   width: calc(100% - var(--gapInside) * 4);
   text-align: left;
 }
-@media (prefers-color-scheme: dark) {
+.header-btns-container {
+  display: flex;
+  gap: var(--gapInside);
+}
+.header-btns-container > button {
+  width: max(100px, 15dvw);
+}
+/* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -138,10 +147,10 @@ img {
   footer {
     border-top: 1px solid hsl(var(--accentCold));
   }
-  li > button {
+  button {
     background-color: hsl(var(--accentCold), 0.5);
   }
-  li > button:hover {
+  button:hover {
     background-color: hsl(var(--accentCold));
   }
   img {
@@ -151,7 +160,7 @@ img {
     background-color: hsl(var(--accentWarm));
     color: hsl(var(--accentCold));
   }
-}
+} */
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
