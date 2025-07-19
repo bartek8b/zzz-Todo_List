@@ -7,6 +7,13 @@ body {
   font-size: calc(1rem + 0.02dvw);
   font-family: text;
 }
+*:not(article)::selection {
+  background-color: transparent;
+}
+article::selection {
+  background-color: hsl(var(--accentCold));
+  color: hsl(var(--accentWarm));
+}
 :root {
   --font: 222, 42%, 11%;
   --background: 0, 0%, 80%;
@@ -56,7 +63,6 @@ main {
 }
 main > aside {
   background-color: hsl(var(--background));
-  border-right: 1px solid hsl(var(--accentWarm));
   display: flex;
   flex-direction: column;
   gap: calc(var(--gapOutside) * 2);
@@ -87,7 +93,6 @@ li > button {
   padding: var(--gapInside);
   border-radius: var(--gapInside);
   border: none;
-  outline: 1px solid hsl(var(--accentCold));
   background-color: hsl(var(--accentWarm), 0.5);
   white-space: nowrap;
   overflow: hidden;
@@ -132,11 +137,7 @@ img {
   footer {
     border-top: 1px solid hsl(var(--accentCold));
   }
-  main > aside {
-    border-right: 1px solid hsl(var(--accentCold));
-  }
   li > button {
-    outline: 1px solid hsl(var(--accentWarm));
     background-color: hsl(var(--accentCold), 0.5);
   }
   li > button:hover {
@@ -145,20 +146,14 @@ img {
   img {
     filter: invert(80%);
   }
+  article::selection {
+    background-color: hsl(var(--accentWarm));
+    color: hsl(var(--accentCold));
+  }
 }
-
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr minmax(auto, 1fr);
-  }
-  main > aside {
-    border-right: none;
-    border-bottom: 1px solid hsl(var(--accentWarm));
-  }
-}
-@media (prefers-color-scheme: dark) and (width <= 767px) {
-  main > aside {
-    border-bottom: 1px solid hsl(var(--accentCold));
   }
 }
