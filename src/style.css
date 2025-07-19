@@ -96,9 +96,13 @@ button {
   background-color: hsl(var(--accentWarm), 0.5);
   white-space: nowrap;
   overflow: hidden;
+  transition: .1s linear;
 }
 button:hover {
   background-color: hsl(var(--accentWarm));
+}
+button:active{
+  transform: scale(90%);
 }
 main > aside li > button {
   width: max(100%, calc(var(--gapOutside) * 4));
@@ -136,7 +140,7 @@ img {
 .header-btns-container > button {
   width: max(100px, 15dvw);
 }
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -160,7 +164,7 @@ img {
     background-color: hsl(var(--accentWarm));
     color: hsl(var(--accentCold));
   }
-} */
+}
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
