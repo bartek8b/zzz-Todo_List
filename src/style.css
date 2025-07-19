@@ -148,13 +148,13 @@ img {
   outline: 2px solid hsl(var(--accentCold));
 }
 .prior-high {
-  border-left: 4px solid hsl(0, 100%, 50%, .7);
+  border-left: 4px solid hsl(0, 100%, 50%, 0.7);
 }
 .prior-mid {
-  border-left: 4px solid hsl(60, 100%, 50%, .7);
+  border-left: 4px solid hsl(60, 100%, 50%, 0.7);
 }
 .prior-low {
-  border-left: 4px solid hsl(120, 100%, 25%, .7);
+  border-left: 4px solid hsl(120, 100%, 25%, 0.7);
 }
 /* ARTICLE - TODOS GRID */
 main > article {
@@ -184,16 +184,23 @@ main > article {
 .data-set > strong,
 .data-set > p {
   align-self: center;
-  /* to be checked */
-  scrollbar-width: auto;
-  scrollbar-color: hsl(var(--accentWarm));
 }
 .description-para {
   max-height: calc(var(--gapOutside) * 5);
   overflow: auto;
+  scrollbar-width: auto;
+  scrollbar-color: hsl(var(--accentWarm));
+}
+.description-para::-webkit-scrollbar {
+  width: 8px;
+  background: hsl(var(--accentWarm), 0.2);
+}
+.description-para::-webkit-scrollbar-thumb {
+  background: hsl(var(--accentWarm));
+  border-radius: 8px;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -225,7 +232,16 @@ main > article {
     box-shadow: 1px 1px 2px hsl(var(--accentWarm), 0.5);
     background-color: hsl(var(--accentCold), 0.2);
   }
-} */
+  .description-para {
+    scrollbar-color: hsl(var(--accentCold));
+  }
+  .description-para::-webkit-scrollbar {
+    background: hsl(var(--accentCold), 0.2);
+  }
+  .description-para::-webkit-scrollbar-thumb {
+    background: hsl(var(--accentCold));
+  }
+}
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
