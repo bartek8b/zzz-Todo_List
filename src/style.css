@@ -146,7 +146,10 @@ article{
   grid-template-columns: repeat(auto-fill, minmax(calc(var(--gapOutside) * 20), 1fr));
   grid-template-rows: repeat(2, 1fr);
   grid-auto-rows: 1fr;
+  padding: var(--gapOutside);
+  gap: var(--gapOutside);
 }
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
