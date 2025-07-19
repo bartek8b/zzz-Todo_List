@@ -5,7 +5,7 @@ body {
   text-wrap: balance;
   color: hsl(var(--font));
   font-size: calc(1rem + 0.02dvw);
-  font-family: text;
+  font-family: text, Arial, Helvetica, sans-serif;
 }
 *:not(article)::selection {
   background-color: transparent;
@@ -31,7 +31,7 @@ article::selection {
   src: url(assets/dynapuff.regular.ttf);
 }
 .fontTitle {
-  font-family: "title";
+  font-family: title, Helvetica, Arial, sans-serif;
   font-size: calc(1rem + 0.3dvw);
 }
 header {
