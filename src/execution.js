@@ -50,10 +50,12 @@ export function editProject(name, newName) {
   const validNewName = nameValidator(newName);
   const project = spotItem(projects, "name", oldName);
   if (!project) {
-    throw new Error("Such project doesn't exist");
+    console.error("Such project doesn't exist");
+    return;
   }
   if (spotItem(projects, "name", validNewName)) {
-    throw new Error("The project already exists");
+    console.error("The project already exists");
+    return;
   }
   project.name = validNewName;
   setStorage(projects);
@@ -66,7 +68,8 @@ export function deleteProject(name) {
   if (index !== -1) {
     projects.splice(index, 1);
   } else {
-    throw new Error("Such project doesn't exist");
+    console.error("Such project doesn't exist");
+    return;
   }
   setStorage(projects);
 }
@@ -83,7 +86,8 @@ export function createTodo(projectName, title, description, dueDate, priority) {
           new Todo(validTitle, description.trim(), dueDate, priority)
         );
       } else {
-        throw new Error("The task already exists");
+        console.error("The task already exists");
+        return;
       }
     }
   }
@@ -102,12 +106,14 @@ export function editTodo(
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
   if (!project) {
-    throw new Error("Such project doesn't exist");
+    console.error("Such project doesn't exist");
+    return;
   }
   const validTitle = nameValidator(title);
   const toEdit = spotItem(project.todos, "title", validTitle);
   if (!toEdit) {
-    throw new Error("Such task doesn't exist");
+    console.error("Such task doesn't exist");
+    return;
   }
   if (validProjectName !== nameValidator(newProjectName)) {
     const index = project.todos.indexOf(toEdit);
@@ -132,12 +138,14 @@ export function deleteTodo(projectName, title) {
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
   if (!project) {
-    throw new Error("Such project doesn't exist");
+    console.error("Such project doesn't exist");
+    return;
   }
   const validTitle = nameValidator(title);
   const toDelete = spotItem(project.todos, "title", validTitle);
   if (!toDelete) {
-    throw new Error("Such task doesn't exist");
+    console.error("Such task doesn't exist");
+    return;
   }
   const index = project.todos.indexOf(toDelete);
   project.todos.splice(index, 1);
@@ -147,18 +155,18 @@ export function deleteTodo(projectName, title) {
 export function editChecked(projectName, title, checked) {
   const validProjectName = nameValidator(projectName);
   const project = spotItem(projects, "name", validProjectName);
-  if (project) {
-    const validTitle = nameValidator(title);
-    const todo = spotItem(project.todos, "title", validTitle);
-    if (todo) {
-      todo.checked = checked;
-      setStorage(projects);
-    } else {
-      throw new Error("The task doesn't exists");
-    }
-  } else {
-    throw new Error("Such project doesn't exist");
+  if (!project) {
+    console.error("Such project doesn't exist");
+    return;
   }
+  const validTitle = nameValidator(title);
+  const todo = spotItem(project.todos, "title", validTitle);
+  if (!todo) {
+    console.error("The task doesn't exists");
+    return;
+  }
+  todo.checked = checked;
+  setStorage(projects);
 }
 
 function filterByProject(projectName) {
@@ -175,16 +183,44 @@ function filterByPriority(array, priority) {
   return todosByPriority;
 }
 
-function filterDueDate(array, days) {
-  const todosByDueDate = [];
+function filterLate(array) {
+  const todosLate = [];
   const today = new Date();
   for (const p of array) {
     for (const t of p.todos) {
       const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      if (dayLeft <= days) {
-        todosByDueDate.push(t);
+      if (dayLeft < 0) {
+        todosLate.push(t);
       }
     }
   }
-  return todosByDueDate;
+  return todosLate;
+}
+
+function filterDay(array) {
+  const todosDay = [];
+  const today = new Date();
+  for (const p of array) {
+    for (const t of p.todos) {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      if (dayLeft >= 0 && dayLeft < 1) {
+        todosDay.push(t);
+      }
+    }
+  }
+  return todosDay;
+}
+
+function filterWeek(array) {
+  const todosWeek = [];
+  const today = new Date();
+  for (const p of array) {
+    for (const t of p.todos) {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      if (dayLeft >= 0 && dayLeft < 7) {
+        todosWeek.push(t);
+      }
+    }
+  }
+  return todosWeek;
 }
