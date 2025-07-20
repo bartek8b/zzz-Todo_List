@@ -18,6 +18,73 @@ function assignPriorityIcon(priority) {
   }
 }
 
+function createGridItem(
+  project,
+  title,
+  description,
+  dueDate,
+  priority,
+  checked
+) {
+  priority = assignPriorityIcon(Number(priority));
+  const priorityLevel = () => {
+    switch (Number(priority)) {
+      case 1:
+        return "low";
+      case 2:
+        return "mid";
+      case 3:
+        return "high";
+      default:
+        console.error("Wrong priority");
+        return;
+    }
+  };
+  const isChecked = () => {
+    if (checked) {
+      return "checked";
+    } else {
+      return "";
+    }
+  };
+
+  return `<div class="grid-item">
+          <div class="data-set">
+            <!-- <strong>Project</strong> -->
+            <p class="fontTitle">${project}</p>
+          </div>
+          <div class="data-set">
+            <!-- <strong>Title</strong> -->
+            <p class="fontTitle">${title}</p>
+          </div>
+          <div class="data-set">
+            <!-- <strong>Description</strong> -->
+            <p class="description-para">
+              ${description}
+            </p>
+          </div>
+          <div class="card-low-bar">
+            <div class="data-set">
+              <strong>Due Date</strong>
+              <p>${dueDate}</p>
+            </div>
+            <div class="data-set">
+              <strong>Priority</strong>
+              <p><img src=${priority} alt=${priorityLevel()} /></p>
+            </div>
+            <div class="data-set">
+              <strong><label for="check">Checked</label></strong>
+              <br />
+              <input type="checkbox" ${isChecked()}/>
+            </div>
+          </div>
+          <div class="data-set card-btns-container">
+            <button><img src="assets/pencil.svg" alt="" /></button>
+            <button><img src="assets/delete.svg" alt="" /></button>
+          </div>
+        </div>`;
+}
+
 function createGrid(arrayToDisplay) {
   for (const p of arrayToDisplay) {
     for (const t of p.todos) {
