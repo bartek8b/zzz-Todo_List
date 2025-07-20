@@ -179,7 +179,7 @@ function filterDueDate(array, days) {
   const todosByDueDate = [];
   const today = new Date();
   for (const p of array) {
-    for (const t of array.todos) {
+    for (const t of p.todos) {
       const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
       if (dayLeft <= days) {
         todosByDueDate.push(t);

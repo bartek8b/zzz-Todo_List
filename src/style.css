@@ -183,7 +183,7 @@ main > article {
 }
 .data-set > strong {
   align-self: center;
-  border-bottom: 2px dotted hsl(var(--font));
+  /* border-bottom: 2px dotted hsl(var(--font)); */
 }
 .data-set.card-btns-container {
   flex-direction: row;
