@@ -1,15 +1,9 @@
 import "./modern-normalize.css";
 import "./style.css";
 
-import { retrieveStorage, ensureDefaultProject } from "./execution.js";
-import { createGrid } from "./gridCreator.js";
 import { projects } from "./data.js";
+import { init } from "./conrtoler.js";
 
-window.onload = function () {
-  retrieveStorage();
-  ensureDefaultProject();
-  createGrid(projects);
-};
+window.onload = init;
 
-createGrid(projects);
 console.log(projects);
