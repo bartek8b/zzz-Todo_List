@@ -40,7 +40,6 @@ export function ensureDefaultProject() {
     createProject("Unassigned");
   }
 }
-
 export function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
@@ -77,6 +76,7 @@ export function deleteProject(name) {
     console.error("Such project doesn't exist");
     return;
   }
+  ensureDefaultProject();
   setStorage(projects);
 }
 
