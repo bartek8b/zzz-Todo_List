@@ -188,4 +188,3 @@ function filterDueDate(array, days) {
   }
   return todosByDueDate;
 }
-

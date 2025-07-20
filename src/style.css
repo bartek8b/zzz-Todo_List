@@ -173,6 +173,7 @@ main > article {
   display: flex;
   flex-direction: column;
   gap: var(--gapInside);
+  justify-content: space-between;
 }
 .data-set {
   display: flex;
@@ -193,7 +194,7 @@ main > article {
   width: 20%;
 }
 .description-para {
-  max-height: calc(var(--gapOutside) * 5);
+  height: calc(var(--gapOutside) * 5);
   overflow: auto;
   scrollbar-width: auto;
   scrollbar-color: hsl(var(--accentWarm));
@@ -215,7 +216,7 @@ main > article {
   display: flex;
   height: var(--gapOutside);
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -258,7 +259,7 @@ main > article {
   #check {
     accent-color: hsl(var(--accentWarm));
   }
-}
+} */
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
