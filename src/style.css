@@ -218,7 +218,7 @@ input[type="checkbox"] {
   display: flex;
   height: var(--gapOutside);
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -261,7 +261,7 @@ input[type="checkbox"] {
   input[type="checkbox"] {
   accent-color: hsl(var(--accentWarm));
 }
-}
+} */
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;

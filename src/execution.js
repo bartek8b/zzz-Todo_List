@@ -35,6 +35,12 @@ export function retrieveStorage() {
   }
 }
 
+export function ensureDefaultProject() {
+  if (projects.length === 0) {
+    createProject("Unassigned");
+  }
+}
+
 export function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
