@@ -79,7 +79,7 @@ function createGridItem(
         </div>`;
 }
 
-function createGrid(arrayToDisplay) {
+export function createGrid(arrayToDisplay) {
   let pushHTML = "";
   for (const p of arrayToDisplay) {
     for (const t of p.todos) {
