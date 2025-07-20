@@ -7,10 +7,6 @@ import editIcon from "./assets/pencil.svg";
 import deleteIcon from "./assets/delete.svg";
 
 function assignPriorityIcon(priority) {
-  const low = "assets/arrow-down-bold.svg";
-  const mid = "assets/minus-thick.svg";
-  const high = "assets/arrow-up-bold.svg";
-
   switch (Number(priority)) {
     case 1:
       return arrowDown;
@@ -32,7 +28,7 @@ function createGridItem(
   priority,
   checked
 ) {
-  priority = assignPriorityIcon(Number(priority));
+  const priorityIcon = assignPriorityIcon(Number(priority));
   const priorityLevel = () => {
     switch (Number(priority)) {
       case 1:
@@ -70,7 +66,7 @@ function createGridItem(
             </div>
             <div class="data-set">
               <strong>Priority</strong>
-              <p><img src=${priority} alt=${priorityLevel()} /></p>
+              <p><img src=${priorityIcon} alt=${priorityLevel()} /></p>
             </div>
             <div class="data-set">
               <strong><label for="check">Checked</label></strong>
