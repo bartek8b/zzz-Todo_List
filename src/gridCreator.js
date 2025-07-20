@@ -1,5 +1,11 @@
 const gridContainer = document.querySelector(".grid-container");
 
+import arrowDown from "./assets/arrow-down-bold.svg";
+import arrowUp from "./assets/arrow-up-bold.svg";
+import mediumPrior from "./assets/minus-thick.svg";
+import editIcon from "./assets/pencil.svg";
+import deleteIcon from "./assets/delete.svg";
+
 function assignPriorityIcon(priority) {
   const low = "assets/arrow-down-bold.svg";
   const mid = "assets/minus-thick.svg";
@@ -7,11 +13,11 @@ function assignPriorityIcon(priority) {
 
   switch (Number(priority)) {
     case 1:
-      return low;
+      return arrowDown;
     case 2:
-      return mid;
+      return mediumPrior;
     case 3:
-      return high;
+      return arrowUp;
     default:
       console.error("Wrong priority");
       return;
@@ -73,8 +79,8 @@ function createGridItem(
             </div>
           </div>
           <div class="data-set card-btns-container">
-            <button data-project=${project} data-title=${title}><img src="assets/pencil.svg" alt="" /></button>
-            <button data-project=${project} data-title=${title}><img src="assets/delete.svg" alt="" /></button>
+            <button data-project=${project} data-title=${title}><img src=${editIcon} alt="" /></button>
+            <button data-project=${project} data-title=${title}><img src=${deleteIcon} alt="" /></button>
           </div>
         </div>`;
 }
