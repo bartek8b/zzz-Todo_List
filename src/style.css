@@ -211,7 +211,7 @@ main > article {
   display: flex;
   justify-content: space-around;
 }
-#check {
+input[type="checkbox"] {
   accent-color: hsl(var(--accentCold));
   display: flex;
   height: var(--gapOutside);
