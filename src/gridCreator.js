@@ -40,13 +40,7 @@ function createGridItem(
         return;
     }
   };
-  const isChecked = () => {
-    if (checked) {
-      return "checked";
-    } else {
-      return "";
-    }
-  };
+  const isChecked = () => (checked ? "checked" : "");
 
   return `<div class="grid-item">
           <div class="data-set">
@@ -79,8 +73,8 @@ function createGridItem(
             </div>
           </div>
           <div class="data-set card-btns-container">
-            <button><img src="assets/pencil.svg" alt="" /></button>
-            <button><img src="assets/delete.svg" alt="" /></button>
+            <button data-project=${project} data-title=${title}><img src="assets/pencil.svg" alt="" /></button>
+            <button data-project=${project} data-title=${title}><img src="assets/delete.svg" alt="" /></button>
           </div>
         </div>`;
 }
