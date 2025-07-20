@@ -188,10 +188,12 @@ main > article {
 }
 .data-set.card-btns-container {
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  gap: calc(var(--gapOutside) * 3);
 }
 .data-set.card-btns-container > button {
-  width: 20%;
+  width: calc(var(--gapOutside) * 3);
+  aspect-ratio: 1 / 1;
 }
 .description-para {
   height: calc(var(--gapOutside) * 5);
