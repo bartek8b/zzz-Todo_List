@@ -80,6 +80,7 @@ function createGridItem(
 }
 
 function createGrid(arrayToDisplay) {
+  let pushHTML = "";
   for (const p of arrayToDisplay) {
     for (const t of p.todos) {
       const project = p.name;
@@ -88,6 +89,16 @@ function createGrid(arrayToDisplay) {
       const dueDate = t.dueDate;
       const priority = t.priority;
       const checked = t.checked;
+
+      pushHTML += createGridItem(
+        project,
+        title,
+        description,
+        dueDate,
+        priority,
+        checked
+      );
     }
   }
+  gridContainer.innerHTML += pushHTML;
 }
