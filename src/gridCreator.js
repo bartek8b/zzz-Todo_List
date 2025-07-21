@@ -70,9 +70,9 @@ function createGridItem(
               <p><img src="${priorityIcon}" alt="${priorityLevel()}" /></p>
             </div>
             <div class="data-set">
-              <strong>Checked</strong>
+              <strong><label for="${id}" style="cursor: pointer;">Checked</label></strong>
               <br />
-              <input type="checkbox" ${isChecked()}/>
+              <input type="checkbox" ${isChecked()} id="${id}"/>
             </div>
           </div>
           <div class="data-set card-btns-container">
