@@ -69,19 +69,20 @@ function createGridItem(
               <p><img src=${priorityIcon} alt=${priorityLevel()} /></p>
             </div>
             <div class="data-set">
-              <strong><label for="check">Checked</label></strong>
+              <strong>Checked</strong>
               <br />
               <input type="checkbox" ${isChecked()}/>
             </div>
           </div>
           <div class="data-set card-btns-container">
-            <button data-project=${project} data-title=${title}><img src=${editIcon} alt="" /></button>
-            <button data-project=${project} data-title=${title}><img src=${deleteIcon} alt="" /></button>
+            <button><img src=${editIcon} alt="edit button" /></button>
+            <button><img src=${deleteIcon} alt="delete button" /></button>
           </div>
         </div>`;
 }
 
 export function createGrid(arrayToDisplay) {
+  gridContainer.innerHTML = "";
   let pushHTML = "";
   for (const p of arrayToDisplay) {
     for (const t of p.todos) {
