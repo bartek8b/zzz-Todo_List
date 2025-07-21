@@ -1,11 +1,11 @@
-import { assignProjectId } from "./execution.js";
+import { assignProjectId, assignTodoId } from "./execution.js";
 
 export class Project {
   constructor(name) {
     this.name = name;
     this.todos = [];
     this.id = assignProjectId();
-  }  
+  }
 }
 
 export class Todo {
@@ -15,6 +15,7 @@ export class Todo {
     this.dueDate = dueDate;
     this.priority = priority;
     this.checked = false;
+    this.id = assignTodoId();
   }
 }
 
