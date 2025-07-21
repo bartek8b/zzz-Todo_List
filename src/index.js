@@ -7,3 +7,4 @@ import { init } from "./conrtoler.js";
 window.onload = init;
 
 console.log(projects);
+

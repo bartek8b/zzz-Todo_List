@@ -26,7 +26,8 @@ function createGridItem(
   description,
   dueDate,
   priority,
-  checked
+  checked,
+  id
 ) {
   const priorityIcon = assignPriorityIcon(Number(priority));
   const priorityLevel = () => {
@@ -47,7 +48,7 @@ function createGridItem(
   return `<div class="grid-item">
           <div class="data-set">
             <!-- <strong>Project</strong> -->
-            <p class="fontTitle">${project}</p>
+            <p class="fontTitle" style="font-size: .9rem">${project}</p>
           </div>
           <div class="data-set">
             <!-- <strong>Title</strong> -->
@@ -66,7 +67,7 @@ function createGridItem(
             </div>
             <div class="data-set">
               <strong>Priority</strong>
-              <p><img src=${priorityIcon} alt=${priorityLevel()} /></p>
+              <p><img src="${priorityIcon}" alt="${priorityLevel()}" /></p>
             </div>
             <div class="data-set">
               <strong>Checked</strong>
@@ -75,8 +76,8 @@ function createGridItem(
             </div>
           </div>
           <div class="data-set card-btns-container">
-            <button><img src=${editIcon} alt="edit button" /></button>
-            <button><img src=${deleteIcon} alt="delete button" /></button>
+            <button class="edit-todo-btn" data-id="${id}"><img src=${editIcon} alt="edit button" /></button>
+            <button class="delete-todo-btn" data-id="${id}"><img src=${deleteIcon} alt="delete button" /></button>
           </div>
         </div>`;
 }
@@ -92,6 +93,7 @@ export function createGrid(arrayToDisplay) {
       const dueDate = t.dueDate;
       const priority = t.priority;
       const checked = t.checked;
+      const id = t.id;
 
       pushHTML += createGridItem(
         project,
@@ -99,7 +101,8 @@ export function createGrid(arrayToDisplay) {
         description,
         dueDate,
         priority,
-        checked
+        checked,
+        id
       );
     }
   }
