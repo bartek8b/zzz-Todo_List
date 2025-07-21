@@ -217,6 +217,7 @@ input[type="checkbox"] {
   accent-color: hsl(var(--accentCold));
   display: flex;
   height: var(--gapOutside);
+  cursor: pointer;
 }
 /* @media (prefers-color-scheme: dark) {
   :root {

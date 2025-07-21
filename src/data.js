@@ -1,7 +1,10 @@
+import { assignProjectId } from "./execution.js";
+
 export class Project {
   constructor(name) {
     this.name = name;
     this.todos = [];
+    this.id = assignProjectId();
   }  
 }
 

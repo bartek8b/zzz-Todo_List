@@ -3,6 +3,13 @@ import { Project, Todo, projects } from "./data.js";
 function nameValidator(name) {
   return name.trim().toUpperCase();
 }
+export function assignProjectId() {
+  let id;
+  do {
+    id = self.crypto.randomUUID();
+  } while (projects.some((p) => p.id === id));
+  return id;
+}
 
 function isProject(name) {
   const validName = nameValidator(name);
