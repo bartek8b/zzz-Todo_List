@@ -65,6 +65,7 @@ export function ensureDefaultProject() {
     createProject("Unassigned");
   }
 }
+
 export function createProject(name) {
   if (!isProject(name)) {
     const validName = nameValidator(name);
@@ -77,10 +78,10 @@ export function createProject(name) {
   }
 }
 
-export function editProject(name, newName) {
-  const oldName = nameValidator(name);
+export function editProject(currentName, newName) {
+  const validCurrentName = nameValidator(currentName);
   const validNewName = nameValidator(newName);
-  const project = spotItem(projects, "name", oldName);
+  const project = spotItem(projects, "name", validCurrentName);
   if (!project) {
     console.error("Such project doesn't exist");
     return false;
@@ -131,27 +132,27 @@ export function createTodo(projectName, title, description, dueDate, priority) {
 }
 
 export function editTodo(
-  projectName,
+  currentProjectName,
   newProjectName,
-  title,
+  currentTitle,
   newTitle,
   newDescription,
   newDueDate,
   newPriority
 ) {
-  const validProjectName = nameValidator(projectName);
-  const project = spotItem(projects, "name", validProjectName);
+  const validCurrentProjectName = nameValidator(currentProjectName);
+  const project = spotItem(projects, "name", validCurrentProjectName);
   if (!project) {
     console.error("Such project doesn't exist");
     return false;
   }
-  const validTitle = nameValidator(title);
-  const toEdit = spotItem(project.todos, "title", validTitle);
+  const validCurrentTitle = nameValidator(currentTitle);
+  const toEdit = spotItem(project.todos, "title", validCurrentTitle);
   if (!toEdit) {
     console.error("Such task doesn't exist");
     return false;
   }
-  if (validProjectName !== nameValidator(newProjectName)) {
+  if (validCurrentProjectName !== nameValidator(newProjectName)) {
     const index = project.todos.indexOf(toEdit);
     project.todos.splice(index, 1);
     // TO BE CHECKED IF createTodo IS TRUE OR FALSE SO RETURN SUCCESS VAR.
