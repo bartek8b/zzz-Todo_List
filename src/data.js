@@ -1,4 +1,27 @@
-import { assignProjectId, assignTodoId } from "./execution.js";
+function assignProjectId() {
+  let id;
+  do {
+    id = self.crypto.randomUUID();
+  } while (projects.some((p) => p.id === id));
+  return id;
+}
+
+function assignTodoId() {
+  let id;
+  const idExist = () => {
+    for (const p of projects) {
+      if (p.todos.some((t) => t.id === id)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  do {
+    id = self.crypto.randomUUID();
+  } while (idExist());
+  return id;
+}
 
 export class Project {
   constructor(name) {

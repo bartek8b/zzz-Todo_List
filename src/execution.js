@@ -1,30 +1,5 @@
 import { Project, Todo, projects } from "./data.js";
 
-export function assignProjectId() {
-  let id;
-  do {
-    id = self.crypto.randomUUID();
-  } while (projects.some((p) => p.id === id));
-  return id;
-}
-
-export function assignTodoId() {
-  let id;
-  const idExist = () => {
-    for (const p of projects) {
-      if (p.todos.some((t) => t.id === id)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  do {
-    id = self.crypto.randomUUID();
-  } while (idExist());
-  return id;
-}
-
 function nameValidator(name) {
   return name.trim().toUpperCase();
 }
