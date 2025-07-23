@@ -22,6 +22,10 @@ function setEventListeners() {
   const cancelNewProject = document.querySelector("#cancel-new-project");
   const confirmNewProject = document.querySelector("#confirm-new-project");
   const projectNameInput = document.querySelector("#project-name-input");
+  const dialogEmptyName = document.querySelector(".dialog-empty-name");
+  const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
+  const dialogProjectExists = document.querySelector(".dialog-project-exist");
+  const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 
   createNewProjectBtn.addEventListener("click", (e) => {
     modalNewProject.showModal();
@@ -36,7 +40,7 @@ function setEventListeners() {
     const trimmedValue = projectNameInput.value.trim();
 
     if (trimmedValue.length === 0) {
-      alert("Project name cannot be empty");
+      dialogEmptyName.showModal();
       projectNameInput.value = "";
       return;
     }
@@ -46,10 +50,16 @@ function setEventListeners() {
       projectNameInput.value = "";
       modalNewProject.close();
     } else {
-      alert("The project already exists");
+      dialogProjectExists.showModal();
       projectNameInput.value = "";
     }
   });
+
+  btnOkEmptyName.addEventListener("click", () => dialogEmptyName.close());
+
+  btnOkProjectExists.addEventListener("click", () =>
+    dialogProjectExists.close()
+  );
 
   // NEW TODO
 }

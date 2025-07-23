@@ -224,6 +224,7 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
+  padding: var(--gapOutside);
   width: min(500px, 90%);
   background-color: hsl(var(--background));
   border: 2px solid hsl(var(--accentWarm));
@@ -257,12 +258,19 @@ dialog > form {
   gap: var(--gapInside);
   justify-content: center;
 }
-.form-btns-container > button {
-  width: max(100px, 10dvw);
+.form-btns-container > button, .ok-btn-empty-name, .ok-btn-project-exists {
+  width: max(150px, 10dvw);
 }
 .cancel-btn {
   background-color: transparent;
   outline: 1px solid hsl(var(--accentWarm));
+}
+.dialog-empty-name > div, .dialog-project-exist > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gapOutside);
 }
 /* MEDIA QUERIES */
 
