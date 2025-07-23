@@ -284,8 +284,8 @@ dialog > form {
   }
   article::selection,
   input::selection {
-    background-color: hsl(var(--accentCold));
-    color: hsl(var(--accentWarm));
+    background-color: hsl(var(--accentWarm));
+    color: hsl(var(--accentCold));
   }
   header {
     border-bottom: 1px solid hsl(var(--accentCold));
