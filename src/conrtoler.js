@@ -1,4 +1,8 @@
-import { retrieveStorage, ensureDefaultProject } from "./execution.js";
+import {
+  retrieveStorage,
+  ensureDefaultProject,
+  createProject,
+} from "./execution.js";
 import { createGrid } from "./gridCreator.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { projects } from "./data.js";
@@ -12,18 +16,38 @@ export function init() {
 }
 
 function setEventListeners() {
-  const cancelBtns = document.querySelectorAll(".cancel-btn");
-  const dialog = document.querySelector("dialog");
-  const modalNewProject = document.querySelector(".modal-new-project");
+  // NEW PROJECT
   const createNewProjectBtn = document.querySelector(".create-project-btn");
-
-  cancelBtns.forEach((b) =>
-    b.addEventListener("click", (e) => {
-      dialog.close();
-    })
-  );
+  const modalNewProject = document.querySelector(".modal-new-project");
+  const cancelNewProject = document.querySelector("#cancel-new-project");
+  const confirmNewProject = document.querySelector("#confirm-new-project");
+  const projectNameInput = document.querySelector("#project-name-input");
 
   createNewProjectBtn.addEventListener("click", (e) => {
     modalNewProject.showModal();
+  });
+
+  cancelNewProject.addEventListener("click", (e) => {
+    modalNewProject.close();
+  });
+
+  confirmNewProject.addEventListener("click", (e) => {
+    const rawValue = projectNameInput.value;
+    const trimmedValue = rawValue.trim();
+
+    if (trimmedValue.length === 0) {
+      alert("Project name cannot be empty");
+      projectNameInput.value = "";
+      return;
+    }
+
+    if (createProject(trimmedValue)) {
+      createProjectsList(projects);
+      projectNameInput.value = "";
+      modalNewProject.close();
+    } else {
+      alert("The project already exists");
+      projectNameInput.value = "";
+    }
   });
 }

@@ -42,8 +42,12 @@ export function ensureDefaultProject() {
 }
 
 export function createProject(name) {
+  const validName = nameValidator(name);
+  if (validName.length === 0) {
+    console.error("Project name cannot be empty");
+    return false;
+  }
   if (!isProject(name)) {
-    const validName = nameValidator(name);
     projects.push(new Project(validName));
     setStorage(projects);
     return true;
