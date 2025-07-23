@@ -3,14 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo 
-      Cards
-    </title>
+    <title>Todo Cards</title>
   </head>
   <body>
     <header>
-      <p class="fontTitle logo">Todo 
-      Cards</p>
+      <p class="font-title logo">Todo Cards</p>
       <div class="header-btns-container">
         <button class="create-project-btn">+ Project</button>
         <button class="create-todo-btn">+ Todo</button>
@@ -19,7 +16,7 @@
     <main>
       <aside>
         <div>
-          <p class="fontTitle">Date</p>
+          <p class="font-title">Date</p>
           <ul>
             <li><button>Late</button></li>
             <li><button class="checked">Day</button></li>
@@ -27,7 +24,7 @@
           </ul>
         </div>
         <div>
-          <p class="fontTitle">Priority</p>
+          <p class="font-title">Priority</p>
           <ul>
             <li><button class="checked">High</button></li>
             <li><button>Medium</button></li>
@@ -35,7 +32,7 @@
           </ul>
         </div>
         <div>
-          <p class="fontTitle">Projects</p>
+          <p class="font-title">Projects</p>
           <ul class="projects-list">
             <!-- TO BE GENERATED -->
           </ul>
@@ -54,5 +51,30 @@
         >created by Bartlomiej Balcerzak
       </a>
     </footer>
+
+    <!-- MODALS -->
+    <dialog class="modal-new-project">
+      <form method="dialog">
+        <div class="label-input-set">
+          <label for="project-name" class="font-title">Project name</label
+          ><input
+            class="font-title"
+            type="text"
+            for="project-name"
+            name="project-name"
+            id="project-name"
+            placeholder=""
+            maxlength="30"
+            pattern=".*[A-Za-z].*"
+            required
+          />
+        </div>
+
+        <div class="form-btns-container">
+          <button id="confirm-new-project">Confirm</button>
+          <button id="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

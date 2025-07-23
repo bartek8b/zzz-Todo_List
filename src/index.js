@@ -7,3 +7,9 @@ import { init } from "./conrtoler.js";
 window.onload = init;
 
 console.log(projects);
+
+//UNDER DEVELOPMENT
+
+const modalNewProject = document.querySelector(".modal-new-project")
+
+modalNewProject.showModal();

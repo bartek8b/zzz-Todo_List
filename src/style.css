@@ -31,8 +31,8 @@ article::selection {
   font-family: "text";
   src: url(assets/dynapuff.regular.ttf);
 }
-.fontTitle {
-  font-family: title, Helvetica, Arial, sans-serif;
+.font-title {
+  font-family: "title", Helvetica, Arial, sans-serif;
   font-size: calc(1rem + 0.3dvw);
 }
 .logo {
@@ -216,6 +216,52 @@ input[type="checkbox"] {
   height: var(--gapOutside);
   cursor: pointer;
 }
+/* MODALS */
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: min(500px, 90%);
+  background-color: hsl(var(--background));
+  border: 2px solid hsl(var(--accentWarm));
+  border-radius: var(--gapOutside);
+}
+dialog input {
+  border-radius: var(--gapInside);
+  outline: 2px solid hsl(var(--accentWarm), 0.5);
+  border: none;
+  width: 100%;
+  padding: calc(var(--gapInside) / 2);
+}
+dialog input:focus {
+  outline: 3px solid hsl(var(--accentWarm)); 
+}
+::backdrop {
+  background-color: hsl(var(--accentWarm), 0.5);
+  /* opacity: 0.99; */
+}
+dialog > form{
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gapOutside) * 2);
+  
+}
+.label-input-set{
+  display: flex;
+  flex-direction: column;
+  gap: var(--gapInside);
+}
+.form-btns-container{
+  display: flex;
+  gap: var(--gapInside);
+  justify-content: center;
+}
+.form-btns-container > button{
+  width: max(100px, 10dvw);;
+}
+/* MEDIA QUERIES */
 /* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;

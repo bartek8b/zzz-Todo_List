@@ -9,3 +9,7 @@ export function init() {
   createProjectsList(projects);
   createGrid(projects);
 }
+
+export function setEventListeners() {
+  
+}
