@@ -260,7 +260,7 @@ dialog > form {
   width: max(100px, 10dvw);
 }
 .cancel-btn {
-  background-color: hsl(var(--background), 0.9);
+  background-color: transparent;
   outline: 1px solid hsl(var(--accentWarm));
 }
 /* MEDIA QUERIES */

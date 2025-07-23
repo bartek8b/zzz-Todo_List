@@ -11,13 +11,19 @@ export function init() {
   setEventListeners();
 }
 
-export function setEventListeners() {
+function setEventListeners() {
   const cancelBtns = document.querySelectorAll(".cancel-btn");
   const dialog = document.querySelector("dialog");
+  const modalNewProject = document.querySelector(".modal-new-project");
+  const createNewProjectBtn = document.querySelector(".create-project-btn");
 
   cancelBtns.forEach((b) =>
     b.addEventListener("click", (e) => {
       dialog.close();
     })
   );
+
+  createNewProjectBtn.addEventListener("click", (e) => {
+    modalNewProject.showModal();
+  });
 }
