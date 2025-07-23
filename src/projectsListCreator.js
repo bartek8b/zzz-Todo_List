@@ -5,7 +5,7 @@ import deleteIcon from "./assets/delete.svg";
 
 function createListItem(name, id) {
   return `<li>
-              <button class="fontTitle">${name}</button>
+              <button class="font-title">${name}</button>
               <button class="edit-project-btn" data-id="${id}">
                 <img src="${editIcon}" alt="edit project" />
               </button>

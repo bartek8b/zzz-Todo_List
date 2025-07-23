@@ -48,11 +48,11 @@ function createGridItem(
   return `<div class="grid-item">
           <div class="data-set">
             <!-- <strong>Project</strong> -->
-            <p class="fontTitle" style="font-size: .9rem">${project}</p>
+            <p class="font-title" style="font-size: .9rem">${project}</p>
           </div>
           <div class="data-set">
             <!-- <strong>Title</strong> -->
-            <p class="fontTitle">${title}</p>
+            <p class="font-title">${title}</p>
           </div>
           <div class="data-set">
             <!-- <strong>Description</strong> -->

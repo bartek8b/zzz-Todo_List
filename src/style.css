@@ -277,7 +277,7 @@ dialog > form {
 }
 /* MEDIA QUERIES */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -338,7 +338,7 @@ dialog > form {
   ::backdrop {
     background-color: hsl(var(--accentCold), 0.5);
   }
-}
+} */
 
 @media (width <= 767px) {
   main {
