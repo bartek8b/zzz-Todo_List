@@ -109,9 +109,6 @@ button:active {
 main > aside li > button {
   width: max(100%, calc(var(--gapOutside) * 4));
 }
-ul.projects-list {
-  flex-direction: column;
-}
 .projects-list {
   flex-direction: column;
 }
