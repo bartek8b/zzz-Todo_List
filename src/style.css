@@ -42,6 +42,7 @@ input::selection {
 header {
   background-color: hsl(var(--background), 0.8);
   height: 48px;
+  min-width: 100%;
   border-bottom: 1px solid hsl(var(--accentWarm));
   padding: var(--gapOutside);
   display: flex;
@@ -344,5 +345,11 @@ dialog > form {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+  }
+  main,
+  aside,
+  article,
+  .grid-item {
+    max-width: 100vw;
   }
 }
