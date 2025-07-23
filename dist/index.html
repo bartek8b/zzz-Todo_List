@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo list</title>
+    <title>Todo Cards</title>
   <script defer src="main.js"></script></head>
   <body>
     <header>
-      <p class="fontTitle logo">Todo list</p>
+      <p class="font-title logo">Todo Cards</p>
       <div class="header-btns-container">
-        <button>+ Project</button>
-        <button>+ Todo</button>
+        <button class="create-project-btn">+ Project</button>
+        <button class="create-todo-btn">+ Todo</button>
       </div>
     </header>
     <main>
       <aside>
         <div>
-          <p class="fontTitle">Date</p>
+          <p class="font-title">Date</p>
           <ul>
             <li><button>Late</button></li>
             <li><button class="checked">Day</button></li>
@@ -24,7 +24,7 @@
           </ul>
         </div>
         <div>
-          <p class="fontTitle">Priority</p>
+          <p class="font-title">Priority</p>
           <ul>
             <li><button class="checked">High</button></li>
             <li><button>Medium</button></li>
@@ -32,29 +32,9 @@
           </ul>
         </div>
         <div>
-          <p class="fontTitle">Projects</p>
+          <p class="font-title">Projects</p>
           <ul class="projects-list">
-            <li>
-              <button class="fontTitle">GROCERIES</button
-              ><button><img src="c11ca64583db9195885d.svg" alt="" /></button>
-              <button><img src="b4a7b26be64c05d0f239.svg" alt="" /></button>
-            </li>
-            <li>
-              <button class="fontTitle checked">
-                PROJECT NAME IS VERY LONG</button
-              ><button><img src="c11ca64583db9195885d.svg" alt="" /></button>
-              <button><img src="b4a7b26be64c05d0f239.svg" alt="" /></button>
-            </li>
-            <li>
-              <button class="fontTitle">SPORTS</button
-              ><button><img src="c11ca64583db9195885d.svg" alt="" /></button>
-              <button><img src="b4a7b26be64c05d0f239.svg" alt="" /></button>
-            </li>
-            <li>
-              <button class="fontTitle">DO THE ODIN PROJECT</button
-              ><button><img src="c11ca64583db9195885d.svg" alt="" /></button>
-              <button><img src="b4a7b26be64c05d0f239.svg" alt="" /></button>
-            </li>
+            <!-- TO BE GENERATED -->
           </ul>
         </div>
       </aside>
@@ -71,5 +51,43 @@
         >created by Bartlomiej Balcerzak
       </a>
     </footer>
+
+    <!-- MODALS -->
+    <dialog class="modal-new-project">
+      <form method="dialog">
+        <div class="label-input-set">
+          <label for="project-name-input" class="font-title">Project name</label
+          ><input
+            class="font-title"
+            type="text"
+            for="project-name"
+            name="project-name"
+            id="project-name-input"
+            placeholder=""
+            maxlength="30"
+            required
+          />
+        </div>
+
+        <div class="form-btns-container">
+          <button id="confirm-new-project">Confirm</button>
+          <button id="cancel-new-project" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog-empty-name" style="z-index: 999">
+      <div>
+        <p>Project name cannot be empty</p>
+        <button class="ok-btn-empty-name">OK</button>
+      </div>
+    </dialog>
+
+    <dialog class="dialog-project-exist" style="z-index: 999">
+      <div>
+        <p>The project already exists</p>
+        <button class="ok-btn-project-exists">OK</button>
+      </div>
+    </dialog>
   </body>
 </html>
