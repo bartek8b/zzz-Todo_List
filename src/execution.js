@@ -95,13 +95,17 @@ export function createTodo(projectName, title, description, dueDate, priority) {
   for (const p of projects) {
     if (p.name === validProjectName) {
       const validTitle = nameValidator(title);
+      if (validTitle.length === 0) {
+        console.error("Todo name cannot be empty");
+        return false;
+      }
       const findTodo = spotItem(p.todos, "title", validTitle);
       if (!findTodo) {
         p.todos.push(
           new Todo(validTitle, description.trim(), dueDate, priority)
         );
       } else {
-        console.error("The task already exists");
+        console.error("The todo already exists");
         return false;
       }
     }
@@ -128,7 +132,7 @@ export function editTodo(
   const validCurrentTitle = nameValidator(currentTitle);
   const toEdit = spotItem(project.todos, "title", validCurrentTitle);
   if (!toEdit) {
-    console.error("Such task doesn't exist");
+    console.error("Such todo doesn't exist");
     return false;
   }
   if (validCurrentProjectName !== nameValidator(newProjectName)) {
@@ -164,7 +168,7 @@ export function deleteTodo(projectName, title) {
   const validTitle = nameValidator(title);
   const toDelete = spotItem(project.todos, "title", validTitle);
   if (!toDelete) {
-    console.error("Such task doesn't exist");
+    console.error("Such todo doesn't exist");
     return false;
   }
   const index = project.todos.indexOf(toDelete);
@@ -183,7 +187,7 @@ export function editChecked(projectName, title, checked) {
   const validTitle = nameValidator(title);
   const todo = spotItem(project.todos, "title", validTitle);
   if (!todo) {
-    console.error("The task doesn't exists");
+    console.error("The todo doesn't exists");
     return false;
   }
   todo.checked = checked;

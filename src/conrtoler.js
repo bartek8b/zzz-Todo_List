@@ -29,11 +29,11 @@ function setEventListeners() {
 
   cancelNewProject.addEventListener("click", (e) => {
     modalNewProject.close();
+    projectNameInput.value = "";
   });
 
   confirmNewProject.addEventListener("click", (e) => {
-    const rawValue = projectNameInput.value;
-    const trimmedValue = rawValue.trim();
+    const trimmedValue = projectNameInput.value.trim();
 
     if (trimmedValue.length === 0) {
       alert("Project name cannot be empty");
@@ -50,4 +50,6 @@ function setEventListeners() {
       projectNameInput.value = "";
     }
   });
+
+  // NEW TODO
 }

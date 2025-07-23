@@ -8,10 +8,11 @@ body {
   font-size: calc(1rem + 0.02dvw);
   font-family: text, Arial, Helvetica, sans-serif;
 }
-body:not(article)::selection {
+body:not(article):not(input)::selection {
   background-color: transparent;
 }
-article::selection {
+article::selection,
+input::selection {
   background-color: hsl(var(--accentCold));
   color: hsl(var(--accentWarm));
 }
@@ -270,10 +271,10 @@ dialog > form {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
   }
-  article::selection {
-    background-color: hsl(var(--accentWarm));
-    color: hsl(var(--accentCold));
-  }
+  article::selection, input::selection {
+  background-color: hsl(var(--accentCold));
+  color: hsl(var(--accentWarm));
+}
   header {
     border-bottom: 1px solid hsl(var(--accentCold));
   }
@@ -326,6 +327,7 @@ dialog > form {
     background-color: hsl(var(--accentCold), 0.5);
   }
 } */
+
 @media (width <= 767px) {
   main {
     grid-template-columns: 1fr;
