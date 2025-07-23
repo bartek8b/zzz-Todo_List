@@ -104,7 +104,7 @@ button:hover {
   background-color: hsl(var(--accentWarm));
 }
 button:active {
-  transform: scale(95%);
+  transform: rotateX(45deg);
 }
 main > aside li > button {
   width: max(100%, calc(var(--gapOutside) * 4));
