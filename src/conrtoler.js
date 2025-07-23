@@ -8,8 +8,16 @@ export function init() {
   ensureDefaultProject();
   createProjectsList(projects);
   createGrid(projects);
+  setEventListeners();
 }
 
 export function setEventListeners() {
-  
+  const cancelBtns = document.querySelectorAll(".cancel-btn");
+  const dialog = document.querySelector("dialog");
+
+  cancelBtns.forEach((b) =>
+    b.addEventListener("click", (e) => {
+      dialog.close();
+    })
+  );
 }

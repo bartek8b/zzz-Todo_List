@@ -236,32 +236,35 @@ dialog input {
   padding: calc(var(--gapInside) / 2);
 }
 dialog input:focus {
-  outline: 3px solid hsl(var(--accentWarm)); 
+  outline: 3px solid hsl(var(--accentWarm));
 }
 ::backdrop {
   background-color: hsl(var(--accentWarm), 0.5);
-  /* opacity: 0.99; */
 }
-dialog > form{
+dialog > form {
   display: flex;
   flex-direction: column;
   gap: calc(var(--gapOutside) * 2);
-  
 }
-.label-input-set{
+.label-input-set {
   display: flex;
   flex-direction: column;
   gap: var(--gapInside);
 }
-.form-btns-container{
+.form-btns-container {
   display: flex;
   gap: var(--gapInside);
   justify-content: center;
 }
-.form-btns-container > button{
-  width: max(100px, 10dvw);;
+.form-btns-container > button {
+  width: max(100px, 10dvw);
+}
+.cancel-btn {
+  background-color: hsl(var(--background), 0.9);
+  outline: 1px solid hsl(var(--accentWarm));
 }
 /* MEDIA QUERIES */
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
@@ -303,8 +306,25 @@ dialog > form{
     background: hsl(var(--accentCold));
   }
   input[type="checkbox"] {
-  accent-color: hsl(var(--accentWarm));
-}
+    accent-color: hsl(var(--accentWarm));
+  }
+
+  dialog {
+    color: hsl(var(--font));
+    border: 2px solid hsl(var(--accentCold));
+  }
+  dialog input {
+    outline: 2px solid hsl(var(--accentCold), 0.5);
+  }
+  dialog input:focus {
+    outline: 3px solid hsl(var(--accentCold));
+  }
+  .cancel-btn {
+    outline: 1px solid hsl(var(--accentCold));
+  }
+  ::backdrop {
+    background-color: hsl(var(--accentCold), 0.5);
+  }
 } */
 @media (width <= 767px) {
   main {
