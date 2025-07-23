@@ -61,5 +61,5 @@ function setEventListeners() {
     dialogProjectExists.close()
   );
 
-  // NEW TODO
+  // EDIT PROJECT
 }
