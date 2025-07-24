@@ -42,4 +42,4 @@ export class Todo {
   }
 }
 
-export let projects = [];
+export const projects = [];

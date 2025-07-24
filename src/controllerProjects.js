@@ -1,21 +1,8 @@
-import {
-  retrieveStorage,
-  ensureDefaultProject,
-  createProject,
-} from "./execution.js";
-import { createGrid } from "./gridCreator.js";
+import { createProject } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { projects } from "./data.js";
 
-export function init() {
-  retrieveStorage();
-  ensureDefaultProject();
-  createProjectsList(projects);
-  createGrid(projects);
-  setEventListeners();
-}
-
-function setEventListeners() {
+export function projectsEventListeners() {
   // NEW PROJECT
   const createNewProjectBtn = document.querySelector(".create-project-btn");
   const modalNewProject = document.querySelector(".modal-new-project");
