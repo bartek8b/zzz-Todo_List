@@ -9,7 +9,7 @@ function isProject(name) {
   return projects.some((p) => p.name === validName);
 }
 
-function spotItem(array, property, condition) {
+export function spotItem(array, property, condition) {
   return array.find((e) => e[property] === condition);
 }
 
