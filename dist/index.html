@@ -56,11 +56,12 @@
     <dialog class="modal-new-project">
       <form method="dialog">
         <div class="label-input-set">
-          <label for="project-name-input" class="font-title">Project name</label
-          ><input
+          <label for="project-name-input" class="font-title"
+            >Project name</label
+          >
+          <input
             class="font-title"
             type="text"
-            for="project-name"
             name="project-name"
             id="project-name-input"
             placeholder=""
@@ -70,20 +71,22 @@
         </div>
 
         <div class="form-btns-container">
-          <button id="confirm-new-project">Confirm</button>
-          <button id="cancel-new-project" class="cancel-btn">Cancel</button>
+          <button type="submit" id="confirm-new-project">Confirm</button>
+          <button type="button" id="cancel-new-project-btn" class="cancel-btn">
+            Cancel
+          </button>
         </div>
       </form>
     </dialog>
 
-    <dialog class="dialog-empty-name" style="z-index: 999">
+    <dialog class="alert-empty-name" style="z-index: 999">
       <div>
         <p>Project name cannot be empty</p>
         <button class="ok-btn-empty-name">OK</button>
       </div>
     </dialog>
 
-    <dialog class="dialog-project-exist" style="z-index: 999">
+    <dialog class="alert-project-exist" style="z-index: 999">
       <div>
         <p>The project already exists</p>
         <button class="ok-btn-project-exists">OK</button>
