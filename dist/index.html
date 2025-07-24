@@ -80,16 +80,28 @@
     </dialog>
 
     <dialog class="alert-empty-name" style="z-index: 999">
-      <div>
+      <div class="centered-modal-content">
         <p>Project name cannot be empty</p>
         <button class="ok-btn-empty-name">OK</button>
       </div>
     </dialog>
 
     <dialog class="alert-project-exist" style="z-index: 999">
-      <div>
+      <div class="centered-modal-content">
         <p>The project already exists</p>
         <button class="ok-btn-project-exists">OK</button>
+      </div>
+    </dialog>
+
+    <dialog class="modal-delete-project" style="z-index: 999">
+      <div class="centered-modal-content">
+        <p>This will delete project and inherit todos</p>
+        <div class="form-btns-container">
+          <button type="submit" id="confirm-delete-project">Confirm</button>
+          <button type="button" id="cancel-delete-project" class="cancel-btn">
+            Cancel
+          </button>
+        </div>
       </div>
     </dialog>
   </body>
