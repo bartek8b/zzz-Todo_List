@@ -1,4 +1,9 @@
-import { createProject, spotItem, deleteProject } from "./execution.js";
+import {
+  createProject,
+  spotItem,
+  deleteProject,
+  editProject,
+} from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { projects } from "./data.js";
 
@@ -77,8 +82,12 @@ function deleteProjectFromList() {
       return;
     }
     const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
+    if (!toBeDeleted) {
+      modalDelete.close();
+      return;
+    }
     deleteProject(toBeDeleted.name);
-    createProjectsList(projects); //SORT?;
+    createProjectsList(projects);
 
     //CREATE GRID (filtered and sorted?) TO BE TRIGGERED?
 
@@ -95,7 +104,15 @@ function deleteProjectFromList() {
 function changeProjectName() {
   const editedNameInput = document.querySelector("#edited-name-input");
   const modalEditProject = document.querySelector(".modal-edit-project");
+  const confirmEditedProject = document.querySelector(
+    "#confirm-edited-project"
+  );
+  const cancelEditedProject = document.querySelector(
+    "#cancel-edited-project-btn"
+  );
+
   let projectToEdit = null;
+
   projectsList.addEventListener("click", (e) => {
     const btn = e.target.closest(".edit-project-btn");
     if (!btn) {
@@ -105,6 +122,18 @@ function changeProjectName() {
     const toBeEdited = spotItem(projects, "id", projectToEdit);
     editedNameInput.value = toBeEdited.name;
     modalEditProject.showModal();
+  });
+
+  confirmEditedProject.addEventListener("click", (e) => {
+    const toBeEdited = spotItem(projects, "id", projectToEdit);
+    editProject(toBeEdited.name, editedNameInput.value);
     projectToEdit = null; //temp clear
+    modalEditProject.close();
+    createProjectsList(projects);
+  });
+
+  cancelEditedProject.addEventListener("click", (e) => {
+    projectToEdit = null; //temp clear
+    modalEditProject.close();
   });
 }
