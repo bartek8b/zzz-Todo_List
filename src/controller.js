@@ -105,7 +105,7 @@ function changeProjectName() {
   const editedNameInput = document.querySelector("#edited-name-input");
   const modalEditProject = document.querySelector(".modal-edit-project");
   const confirmEditedProject = document.querySelector(
-    "#confirm-edited-project"
+    "#confirm-edited-project-btn"
   );
   const cancelEditedProject = document.querySelector(
     "#cancel-edited-project-btn"
