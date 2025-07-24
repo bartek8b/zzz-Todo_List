@@ -72,7 +72,7 @@ export function editProject(currentName, newName) {
   project.name = validNewName;
   setStorage(projects);
   return true;
-}
+} 
 
 export function deleteProject(name) {
   const projectName = nameValidator(name);

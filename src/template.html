@@ -104,5 +104,34 @@
         </div>
       </div>
     </dialog>
+
+    <!-- ----------NEW EDIT--------- -->
+    <dialog class="modal-edit-project">
+      <form method="dialog">
+        <div class="label-input-set">
+          <label for="edited-name-input" class="font-title"
+            >Edit project name</label
+          >
+          <input
+            class="font-title"
+            type="text"
+            name="edited-name"
+            id="edited-name-input"
+            placeholder=""
+            maxlength="30"
+            required
+          />
+        </div>
+
+        <div class="form-btns-container">
+          <button type="submit" id="confirm-edited-project">Confirm</button>
+          <button type="button" id="cancel-edited-project-btn" class="cancel-btn">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+
   </body>
 </html>
