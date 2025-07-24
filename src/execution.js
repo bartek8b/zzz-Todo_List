@@ -9,13 +9,13 @@ function isProject(name) {
   return projects.some((p) => p.name === validName);
 }
 
-export function spotItem(array, property, condition) {
-  return array.find((e) => e[property] === condition);
-}
-
 function setStorage(value) {
   const data = JSON.stringify(value);
   localStorage.setItem("data", data);
+}
+
+export function spotItem(array, property, condition) {
+  return array.find((e) => e[property] === condition);
 }
 
 export function retrieveStorage() {
@@ -49,6 +49,7 @@ export function createProject(name) {
   }
   if (!isProject(name)) {
     projects.push(new Project(validName));
+    projects.sort((a, b) => a.name.localeCompare(b.name));
     setStorage(projects);
     return true;
   } else {
@@ -70,9 +71,10 @@ export function editProject(currentName, newName) {
     return false;
   }
   project.name = validNewName;
+  projects.sort((a, b) => a.name.localeCompare(b.name));
   setStorage(projects);
   return true;
-} 
+}
 
 export function deleteProject(name) {
   const projectName = nameValidator(name);
