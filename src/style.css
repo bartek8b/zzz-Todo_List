@@ -106,7 +106,7 @@ button:hover {
   background-color: hsl(var(--accentWarm));
 }
 button:active {
-  transform: rotateX(45deg);
+  transform: rotateX(30deg);
 }
 main > aside li > button {
   width: max(100%, calc(var(--gapOutside) * 4));
@@ -268,13 +268,13 @@ dialog > form {
   background-color: transparent;
   outline: 1px solid hsl(var(--accentWarm));
 }
-.alert-empty-name > div,
-.alert-project-exist > div {
+.centered-modal-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--gapOutside);
+  width: 100%;
 }
 /* MEDIA QUERIES */
 

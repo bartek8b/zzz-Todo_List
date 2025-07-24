@@ -13,7 +13,7 @@ const alertProjectExists = document.querySelector(".alert-project-exist");
 const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 
 export function setEventListeners() {
-  appendProjectIntoList()
+  appendProjectIntoList();
   deleteProjectFromList();
 }
 
@@ -56,13 +56,34 @@ function appendProjectIntoList() {
 
 function deleteProjectFromList() {
   const projectsList = document.querySelector(".projects-list");
+  const modalDelete = document.querySelector(".modal-delete-project");
+  const confirmBtn = document.querySelector("#confirm-delete-project");
+  const cancelBtn = document.querySelector("#cancel-delete-project");
+
+  let projectIdToDelete = null;
+
   projectsList.addEventListener("click", (e) => {
     const btn = e.target.closest(".delete-project-btn");
     if (!btn) {
       return;
     }
-    const toBeDeleted = spotItem(projects, "id", btn.dataset.id);
+    projectIdToDelete = btn.dataset.id;
+    modalDelete.showModal();
+  });
+  confirmBtn.addEventListener("click", (e) => {
+    if (!projectIdToDelete) {
+      return;
+    }
+    const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
     deleteProject(toBeDeleted.name);
     createProjectsList(projects);
+    //CREATE GRID () TO BE TRIGGERED?
+    projectIdToDelete = null;
+    modalDelete.close();
+  });
+
+  cancelBtn.addEventListener("click", (e) => {
+    projectIdToDelete = null;
+    modalDelete.close();
   });
 }
