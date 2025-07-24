@@ -70,6 +70,9 @@ export function editProject(currentName, newName) {
     console.error("The project already exists");
     return false;
   }
+  if(!validNewName){
+    return false;
+  }
   project.name = validNewName;
   projects.sort((a, b) => a.name.localeCompare(b.name));
   setStorage(projects);

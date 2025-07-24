@@ -13,6 +13,8 @@ const alertProjectExists = document.querySelector(".alert-project-exist");
 const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 const projectsList = document.querySelector(".projects-list");
 
+btnOkEmptyName.addEventListener("click", () => alertEmptyName.close());
+
 export function setEventListeners() {
   appendProjectIntoList();
   deleteProjectFromList();
@@ -54,8 +56,6 @@ function appendProjectIntoList() {
       projectNameInput.value = "";
     }
   });
-
-  btnOkEmptyName.addEventListener("click", () => alertEmptyName.close());
 
   btnOkProjectExists.addEventListener("click", () =>
     alertProjectExists.close()
@@ -126,6 +126,11 @@ function changeProjectName() {
 
   confirmEditedProject.addEventListener("click", (e) => {
     const toBeEdited = spotItem(projects, "id", projectToEdit);
+    if (!editedNameInput.value.trim()) {
+      alertEmptyName.showModal();
+      editedNameInput.value = "";
+      return;
+    }
     editProject(toBeEdited.name, editedNameInput.value);
     projectToEdit = null; //temp clear
     modalEditProject.close();
