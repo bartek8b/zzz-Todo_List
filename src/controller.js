@@ -2,18 +2,21 @@ import { createProject } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { projects } from "./data.js";
 
-export function projectsEventListeners() {
-  // NEW PROJECT
-  const createNewProjectBtn = document.querySelector(".create-project-btn");
-  const modalNewProject = document.querySelector(".modal-new-project");
-  const cancelNewProject = document.querySelector("#cancel-new-project");
-  const confirmNewProject = document.querySelector("#confirm-new-project");
-  const projectNameInput = document.querySelector("#project-name-input");
-  const alertEmptyName = document.querySelector(".alert-empty-name");
-  const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
-  const alertProjectExists = document.querySelector(".alert-project-exist");
-  const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
+const createNewProjectBtn = document.querySelector(".create-project-btn");
+const modalNewProject = document.querySelector(".modal-new-project");
+const cancelNewProject = document.querySelector("#cancel-new-project");
+const confirmNewProject = document.querySelector("#confirm-new-project");
+const projectNameInput = document.querySelector("#project-name-input");
+const alertEmptyName = document.querySelector(".alert-empty-name");
+const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
+const alertProjectExists = document.querySelector(".alert-project-exist");
+const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 
+export function setEventListeners() {
+  newProject();
+}
+
+function newProject() {
   createNewProjectBtn.addEventListener("click", (e) => {
     modalNewProject.showModal();
   });
@@ -47,6 +50,8 @@ export function projectsEventListeners() {
   btnOkProjectExists.addEventListener("click", () =>
     alertProjectExists.close()
   );
+}
 
-  // EDIT PROJECT
+function deleteProject() {
+  
 }
