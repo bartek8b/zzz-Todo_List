@@ -268,8 +268,8 @@ dialog > form {
   background-color: transparent;
   outline: 1px solid hsl(var(--accentWarm));
 }
-.dialog-empty-name > div,
-.dialog-project-exist > div {
+.alert-empty-name > div,
+.alert-project-exist > div {
   display: flex;
   flex-direction: column;
   align-items: center;

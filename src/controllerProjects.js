@@ -9,9 +9,9 @@ export function projectsEventListeners() {
   const cancelNewProject = document.querySelector("#cancel-new-project");
   const confirmNewProject = document.querySelector("#confirm-new-project");
   const projectNameInput = document.querySelector("#project-name-input");
-  const dialogEmptyName = document.querySelector(".dialog-empty-name");
+  const alertEmptyName = document.querySelector(".alert-empty-name");
   const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
-  const dialogProjectExists = document.querySelector(".dialog-project-exist");
+  const alertProjectExists = document.querySelector(".alert-project-exist");
   const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 
   createNewProjectBtn.addEventListener("click", (e) => {
@@ -27,7 +27,7 @@ export function projectsEventListeners() {
     const trimmedValue = projectNameInput.value.trim();
 
     if (trimmedValue.length === 0) {
-      dialogEmptyName.showModal();
+      alertEmptyName.showModal();
       projectNameInput.value = "";
       return;
     }
@@ -37,15 +37,15 @@ export function projectsEventListeners() {
       projectNameInput.value = "";
       modalNewProject.close();
     } else {
-      dialogProjectExists.showModal();
+      alertProjectExists.showModal();
       projectNameInput.value = "";
     }
   });
 
-  btnOkEmptyName.addEventListener("click", () => dialogEmptyName.close());
+  btnOkEmptyName.addEventListener("click", () => alertEmptyName.close());
 
   btnOkProjectExists.addEventListener("click", () =>
-    dialogProjectExists.close()
+    alertProjectExists.close()
   );
 
   // EDIT PROJECT
