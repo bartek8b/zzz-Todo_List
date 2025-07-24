@@ -125,10 +125,10 @@ function changeProjectName() {
   });
 
   confirmEditedProject.addEventListener("click", (e) => {
+    e.preventDefault();
     const toBeEdited = spotItem(projects, "id", projectToEdit);
     if (!editedNameInput.value.trim()) {
       alertEmptyName.showModal();
-      editedNameInput.value = "";
       return;
     }
     editProject(toBeEdited.name, editedNameInput.value);
