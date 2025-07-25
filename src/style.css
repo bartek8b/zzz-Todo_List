@@ -305,13 +305,16 @@ input[type="radio"] {
 }
 .label-input-set.priority-input-container {
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  border: none;
+  padding: 0;
 }
 .priority-input-container label:hover{
   cursor: pointer;
 }
-
-
+.label-input-set.priority-input-container > legend{
+  margin-bottom: var(--gapOutside);
+}
 
 
 
