@@ -36,6 +36,7 @@ textarea::selection {
 .font-title {
   font-family: "title", Helvetica, Arial, sans-serif;
   font-size: calc(1rem + 0.3dvw);
+  text-align: center;
 }
 .logo {
   font-size: calc(1.5rem + 0.02dvw);
@@ -221,10 +222,14 @@ input[type="checkbox"] {
   display: flex;
   height: var(--gapOutside);
   cursor: pointer;
+  outline: none;
 }
 input[type="date"]{
   width: fit-content;
   padding: var(--gapInside);
+}
+input[type="checkbox"]:focus{
+  outline: none;
 }
 select {
   cursor: pointer;
@@ -325,7 +330,7 @@ input[type="radio"] {
 
 /* MEDIA QUERIES */
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -391,7 +396,7 @@ input[type="radio"] {
   input[type="radio"] {
     accent-color: hsl(var(--accentWarm));
   }
-} */
+}
 
 @media (width <= 767px) {
   main {
