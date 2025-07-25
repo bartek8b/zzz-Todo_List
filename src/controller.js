@@ -61,7 +61,7 @@ function appendProjectIntoList() {
     } else {
       alertProjectExists.showModal();
       projectNameInput.value = "";
-      return false; 
+      return false;
     }
   });
 
@@ -178,6 +178,7 @@ function appendTodoIntoGrid() {
   }
 
   newTodoBtn.addEventListener("click", (e) => {
+    setProjectOptions();
     modalNewTodo.showModal();
   });
 
@@ -224,4 +225,14 @@ function appendTodoIntoGrid() {
   okBtnEmptyFields.addEventListener("click", (e) => {
     alertEmptyFields.close();
   });
+}
+
+function setProjectOptions() {
+  const optionsContainer = document.querySelector("#todo-project-input");
+  optionsContainer.innerHTML = "";
+  let pushHTML = "";
+  for (const p of projects) {
+    pushHTML += `<option value="${p.name}">${p.name}</option>`;
+  }
+  optionsContainer.innerHTML = pushHTML;
 }
