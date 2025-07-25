@@ -331,7 +331,7 @@ input[type="radio"] {
 
 /* MEDIA QUERIES */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -404,7 +404,7 @@ input[type="radio"] {
   select {
     outline: 2px solid hsl(var(--accentCold), 0.5);
   }
-}
+} */
 
 @media (width <= 767px) {
   main {
