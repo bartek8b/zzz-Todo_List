@@ -216,13 +216,17 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: space-around;
 }
-input[type="checkbox"]{
+input[type="checkbox"] {
   accent-color: hsl(var(--accentCold));
   display: flex;
   height: var(--gapOutside);
   cursor: pointer;
 }
-select{
+input[type="date"]{
+  width: fit-content;
+  padding: var(--gapInside);
+}
+select {
   cursor: pointer;
 }
 /* MODALS */
@@ -239,7 +243,8 @@ dialog {
   border-radius: var(--gapOutside);
 }
 dialog input,
-textarea, select  {
+textarea,
+select {
   border-radius: var(--gapInside);
   outline: 2px solid hsl(var(--accentWarm), 0.5);
   border: none;
@@ -276,7 +281,8 @@ dialog > form {
 }
 .form-btns-container > button,
 .ok-btn-empty-name,
-.ok-btn-project-exists {
+.ok-btn-project-exists,
+.ok-btn-empty-fields {
   width: max(150px, 10dvw);
 }
 .cancel-btn {
@@ -291,7 +297,6 @@ dialog > form {
   text-align: center;
   gap: var(--gapOutside);
   width: 100%;
-  
 }
 .priority-radio-set {
   display: flex;
@@ -311,14 +316,12 @@ input[type="radio"] {
   border: none;
   padding: 0;
 }
-.priority-input-container label:hover{
+.priority-input-container label:hover {
   cursor: pointer;
 }
-.label-input-set.priority-input-container > legend{
+.label-input-set.priority-input-container > legend {
   margin-bottom: var(--gapOutside);
 }
-
-
 
 /* MEDIA QUERIES */
 

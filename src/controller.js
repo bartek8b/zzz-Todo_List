@@ -50,7 +50,7 @@ function appendProjectIntoList() {
     if (trimmedValue.length === 0) {
       alertEmptyName.showModal();
       projectNameInput.value = "";
-      return;
+      return false;
     }
 
     if (createProject(trimmedValue)) {
@@ -61,6 +61,7 @@ function appendProjectIntoList() {
     } else {
       alertProjectExists.showModal();
       projectNameInput.value = "";
+      return false; 
     }
   });
 
@@ -86,12 +87,12 @@ function deleteProjectFromList() {
   });
   confirmBtn.addEventListener("click", (e) => {
     if (!projectIdToDelete) {
-      return;
+      return false;
     }
     const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
     if (!toBeDeleted) {
       modalDelete.close();
-      return;
+      return false;
     }
     deleteProject(toBeDeleted.name);
     createProjectsList(projects);
@@ -137,7 +138,7 @@ function changeProjectName() {
     const toBeEdited = spotItem(projects, "id", projectToEdit);
     if (!editedNameInput.value.trim()) {
       alertEmptyName.showModal();
-      return;
+      return false;
     }
     editProject(toBeEdited.name, editedNameInput.value);
     projectToEdit = null; //temp clear
@@ -161,6 +162,8 @@ function appendTodoIntoGrid() {
   const title = document.querySelector("#todo-title-input");
   const description = document.querySelector("#todo-description-input");
   const dueDate = document.querySelector("#todo-duedate-input");
+  const alertEmptyFields = document.querySelector(".alert-empty-fields");
+  const okBtnEmptyFields = document.querySelector(".ok-btn-empty-fields");
 
   function clearForm() {
     title.value = "";
@@ -180,6 +183,7 @@ function appendTodoIntoGrid() {
 
   cancelBtn.addEventListener("click", (e) => {
     modalNewTodo.close();
+    clearForm();
   });
 
   confirmBtn.addEventListener("click", (e) => {
@@ -201,6 +205,10 @@ function appendTodoIntoGrid() {
           return 1;
       }
     }
+    if (!projectName.value || !title.value.trim() || !dueDate.value) {
+      alertEmptyFields.showModal();
+      return false;
+    }
     createTodo(
       projectName.value,
       title.value,
@@ -212,5 +220,8 @@ function appendTodoIntoGrid() {
     createGrid(projects);
     clearForm();
     modalNewTodo.close();
+  });
+  okBtnEmptyFields.addEventListener("click", (e) => {
+    alertEmptyFields.close();
   });
 }
