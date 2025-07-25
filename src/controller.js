@@ -161,7 +161,6 @@ function appendTodoIntoGrid() {
   const title = document.querySelector("#todo-title-input");
   const description = document.querySelector("#todo-description-input");
   const dueDate = document.querySelector("#todo-duedate-input");
-  const priority = document.querySelector('input[name="priority"]:checked');
 
   function clearForm() {
     title.value = "";
