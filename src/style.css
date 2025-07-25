@@ -8,11 +8,12 @@ body {
   font-size: calc(1rem + 0.02dvw);
   font-family: text, Arial, Helvetica, sans-serif;
 }
-body:not(article):not(input)::selection {
+body:not(article):not(input):not(textarea)::selection {
   background-color: transparent;
 }
 article::selection,
-input::selection {
+input::selection,
+textarea::selection {
   background-color: hsl(var(--accentCold));
   color: hsl(var(--accentWarm));
 }
@@ -200,13 +201,16 @@ main > article {
   scrollbar-width: auto;
   scrollbar-color: hsl(var(--accentWarm));
 }
-.description-para::-webkit-scrollbar {
+.description-para::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
   width: 8px;
   background: hsl(var(--accentWarm), 0.2);
 }
-.description-para::-webkit-scrollbar-thumb {
+.description-para::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
   background: hsl(var(--accentWarm));
   border-radius: 8px;
+  cursor: pointer;
 }
 .card-low-bar {
   display: flex;
@@ -231,14 +235,22 @@ dialog {
   border: 2px solid hsl(var(--accentWarm));
   border-radius: var(--gapOutside);
 }
-dialog input {
+dialog input,
+textarea {
   border-radius: var(--gapInside);
   outline: 2px solid hsl(var(--accentWarm), 0.5);
   border: none;
   width: 100%;
   padding: calc(var(--gapInside) / 2);
 }
-dialog input:focus {
+textarea {
+  max-width: 100%;
+  max-height: 150px;
+  scrollbar-width: auto;
+  scrollbar-color: hsl(var(--accentWarm));
+}
+input:focus,
+textarea:focus {
   outline: 3px solid hsl(var(--accentWarm));
 }
 ::backdrop {
@@ -284,7 +296,7 @@ dialog > form {
     --background: 222, 42%, 11%;
   }
   article::selection,
-  input::selection {
+  input::selection, textarea::selection {
     background-color: hsl(var(--accentWarm));
     color: hsl(var(--accentCold));
   }
@@ -330,7 +342,7 @@ dialog > form {
   dialog input {
     outline: 2px solid hsl(var(--accentCold), 0.5);
   }
-  dialog input:focus {
+  dialog input:focus, textarea:focus {
     outline: 3px solid hsl(var(--accentCold));
   }
   .cancel-btn {

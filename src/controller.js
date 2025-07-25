@@ -13,6 +13,8 @@ const alertProjectExists = document.querySelector(".alert-project-exist");
 const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 const projectsList = document.querySelector(".projects-list");
 
+const todosToDisplay = [];
+
 btnOkEmptyName.addEventListener("click", () => alertEmptyName.close());
 
 export function setEventListeners() {
@@ -21,6 +23,7 @@ export function setEventListeners() {
   changeProjectName();
 }
 
+//PROJECTS
 function appendProjectIntoList() {
   const modalNewProject = document.querySelector(".modal-new-project");
   const createNewProjectBtn = document.querySelector(".create-project-btn");
@@ -101,6 +104,8 @@ function deleteProjectFromList() {
   });
 }
 
+// TODOS
+
 function changeProjectName() {
   const editedNameInput = document.querySelector("#edited-name-input");
   const modalEditProject = document.querySelector(".modal-edit-project");
@@ -141,4 +146,10 @@ function changeProjectName() {
     projectToEdit = null; //temp clear
     modalEditProject.close();
   });
+}
+
+function appendTodoIntoGrid(){
+  
+  createTodo(projectName, title, description, dueDate, priority);
+  createGrid(arrayToDisplay);
 }
