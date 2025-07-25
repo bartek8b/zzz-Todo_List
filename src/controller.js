@@ -3,8 +3,10 @@ import {
   spotItem,
   deleteProject,
   editProject,
+  createTodo,
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
+import { createGrid } from "./gridCreator.js";
 import { projects } from "./data.js";
 
 const alertEmptyName = document.querySelector(".alert-empty-name");
@@ -53,6 +55,7 @@ function appendProjectIntoList() {
 
     if (createProject(trimmedValue)) {
       createProjectsList(projects);
+      createGrid(projects);
       projectNameInput.value = "";
       modalNewProject.close();
     } else {
@@ -92,8 +95,7 @@ function deleteProjectFromList() {
     }
     deleteProject(toBeDeleted.name);
     createProjectsList(projects);
-
-    //CREATE GRID (filtered and sorted?) TO BE TRIGGERED?
+    createGrid(projects);
 
     projectIdToDelete = null; //temp clear
     modalDelete.close();
@@ -141,6 +143,7 @@ function changeProjectName() {
     projectToEdit = null; //temp clear
     modalEditProject.close();
     createProjectsList(projects);
+    createGrid(projects);
   });
 
   cancelEditedProject.addEventListener("click", (e) => {
@@ -152,9 +155,63 @@ function changeProjectName() {
 function appendTodoIntoGrid() {
   const newTodoBtn = document.querySelector(".create-todo-btn");
   const modalNewTodo = document.querySelector(".modal-new-todo");
+  const cancelBtn = document.querySelector("#cancel-new-todo-btn");
+  const confirmBtn = document.querySelector("#confirm-new-todo-btn");
+  const projectName = document.querySelector("#todo-project-input");
+  const title = document.querySelector("#todo-title-input");
+  const description = document.querySelector("#todo-description-input");
+  const dueDate = document.querySelector("#todo-duedate-input");
+  const priority = document.querySelector('input[name="priority"]:checked');
+
+  function clearForm() {
+    title.value = "";
+    description.value = "";
+    dueDate.value = "";
+    const lowRadio = document.querySelector(
+      'input[name="priority"][value="low"]'
+    );
+    if (lowRadio) {
+      lowRadio.checked = true;
+    }
+  }
+
   newTodoBtn.addEventListener("click", (e) => {
     modalNewTodo.showModal();
   });
-  // createTodo(projectName, title, description, dueDate, priority);
-  // createGrid(arrayToDisplay);
+
+  cancelBtn.addEventListener("click", (e) => {
+    modalNewTodo.close();
+  });
+
+  confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const priority = document.querySelector('input[name="priority"]:checked');
+    function priorityByNumber(priority) {
+      if (!priority) {
+        return 1;
+      }
+      switch (priority.value.toLowerCase()) {
+        case "low":
+          return 1;
+        case "medium":
+          return 2;
+        case "high":
+          return 3;
+        default:
+          console.error("Wrong priority:", priority);
+          return 1;
+      }
+    }
+    createTodo(
+      projectName.value,
+      title.value,
+      description.value,
+      dueDate.value,
+      priorityByNumber(priority)
+    );
+    createProjectsList(projects);
+    createGrid(projects);
+    clearForm();
+    modalNewTodo.close();
+  });
 }

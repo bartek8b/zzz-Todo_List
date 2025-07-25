@@ -219,7 +219,7 @@ textarea::-webkit-scrollbar-thumb {
 input[type="checkbox"]{
   accent-color: hsl(var(--accentCold));
   display: flex;
-  height: calc(var(--gapOutside) * 2);
+  height: var(--gapOutside);
   cursor: pointer;
 }
 select{
