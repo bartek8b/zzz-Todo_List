@@ -21,6 +21,7 @@ export function setEventListeners() {
   appendProjectIntoList();
   deleteProjectFromList();
   changeProjectName();
+  appendTodoIntoGrid();
 }
 
 //PROJECTS
@@ -148,8 +149,12 @@ function changeProjectName() {
   });
 }
 
-function appendTodoIntoGrid(){
-  
-  createTodo(projectName, title, description, dueDate, priority);
-  createGrid(arrayToDisplay);
+function appendTodoIntoGrid() {
+  const newTodoBtn = document.querySelector(".create-todo-btn");
+  const modalNewTodo = document.querySelector(".modal-new-todo");
+  newTodoBtn.addEventListener("click", (e) => {
+    modalNewTodo.showModal();
+  });
+  // createTodo(projectName, title, description, dueDate, priority);
+  // createGrid(arrayToDisplay);
 }
