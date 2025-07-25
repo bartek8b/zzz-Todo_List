@@ -68,7 +68,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-/* MENU, SELECTORS, BUTTONS */
+/* MENU, SELECTORS, PROJECTS BUTTONS */
 main > aside {
   background-color: hsl(var(--background));
   display: flex;
@@ -129,7 +129,7 @@ img {
   width: var(--gapInside) * 2;
 }
 .projects-list > li > button:first-child {
-  width: calc(100% - var(--gapInside) * 4);
+  max-width: calc(100% - var(--gapInside) * 4);
   text-align: left;
 }
 .header-btns-container {
