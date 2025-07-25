@@ -27,6 +27,7 @@ export function setEventListeners() {
 }
 
 //PROJECTS
+
 function appendProjectIntoList() {
   const modalNewProject = document.querySelector(".modal-new-project");
   const createNewProjectBtn = document.querySelector(".create-project-btn");
@@ -236,3 +237,11 @@ function setProjectOptions() {
   }
   optionsContainer.innerHTML = pushHTML;
 }
+
+// TODOS ON CARDDS
+
+function deleteTodoBtn() {}
+
+function editTodoBtn() {}
+
+function updateChecked() {}
