@@ -223,12 +223,12 @@ input[type="checkbox"] {
   cursor: pointer;
   outline: none;
 }
-input[type="checkbox"]:focus{
+input[type="checkbox"]:focus {
   outline: none;
 }
-input[type="date"]{
-  width: fit-content;
-  padding: var(--gapInside);
+input[type="date"] {
+  width: 50%;
+  align-self: center;
 }
 select {
   cursor: pointer;
@@ -254,8 +254,8 @@ select {
   border-radius: var(--gapInside);
   outline: 2px solid hsl(var(--accentWarm), 0.5);
   border: none;
-  width: 100%;
-  padding: calc(var(--gapInside) / 2);
+  width: 100%;  
+  padding: var(--gapInside);
 }
 textarea {
   max-width: 100%;
