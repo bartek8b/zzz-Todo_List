@@ -216,10 +216,13 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: space-around;
 }
-input[type="checkbox"] {
+input[type="checkbox"]{
   accent-color: hsl(var(--accentCold));
   display: flex;
   height: calc(var(--gapOutside) * 2);
+  cursor: pointer;
+}
+select{
   cursor: pointer;
 }
 /* MODALS */
@@ -229,14 +232,14 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  padding: var(--gapOutside);
+  padding: calc(var(--gapOutside) * 2);
   width: min(500px, 90%);
   background-color: hsl(var(--background));
   border: 2px solid hsl(var(--accentWarm));
   border-radius: var(--gapOutside);
 }
 dialog input,
-textarea {
+textarea, select  {
   border-radius: var(--gapInside);
   outline: 2px solid hsl(var(--accentWarm), 0.5);
   border: none;
@@ -304,12 +307,14 @@ input[type="radio"] {
   flex-direction: row;
   justify-content: space-between;
 }
-fieldset{
-  border: none;
-}
 .priority-input-container label:hover{
   cursor: pointer;
 }
+
+
+
+
+
 /* MEDIA QUERIES */
 
 /* @media (prefers-color-scheme: dark) {

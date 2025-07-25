@@ -138,7 +138,18 @@
       <!-- ------------- delete style ----------- -->
       <form method="dialog">
         <!-- PROJECT LIST -->
-        <div class="label-input-set"></div>
+        <div class="label-input-set">
+          <label for="todo-title-input" class="font-title">Project</label>
+
+          <select name="pets" id="todo-title-input">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="hamster">Hamster</option>
+            <option value="parrot">Parrot</option>
+            <option value="spider">Spider</option>
+            <option value="goldfish">Goldfish</option>
+          </select>
+        </div>
 
         <!-- TITLE -->
         <div class="label-input-set">
@@ -173,7 +184,7 @@
 
         <!-- PRIORITY -->
         <div class="label-input-set priority-input-container">
-          <legend class="font-title">Priority</legend>
+          <div class="font-title">Priority</div>
           <div class="priority-radio-set">
             <input
               type="radio"
