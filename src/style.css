@@ -254,7 +254,7 @@ select {
   border-radius: var(--gapInside);
   outline: 2px solid hsl(var(--accentWarm), 0.5);
   border: none;
-  width: 100%;  
+  width: 100%;
   padding: var(--gapInside);
 }
 textarea {
@@ -331,7 +331,7 @@ input[type="radio"] {
 
 /* MEDIA QUERIES */
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -367,10 +367,12 @@ input[type="radio"] {
   .description-para {
     scrollbar-color: hsl(var(--accentCold));
   }
-  .description-para::-webkit-scrollbar {
+  .description-para::-webkit-scrollbar,
+  textarea::-webkit-scrollbar {
     background: hsl(var(--accentCold), 0.2);
   }
-  .description-para::-webkit-scrollbar-thumb {
+  .description-para::-webkit-scrollbar-thumb,
+  textarea::-webkit-scrollbar-thumb {
     background: hsl(var(--accentCold));
   }
   input[type="checkbox"] {
@@ -397,7 +399,12 @@ input[type="radio"] {
   input[type="radio"] {
     accent-color: hsl(var(--accentWarm));
   }
-} */
+  dialog input,
+  textarea,
+  select {
+    outline: 2px solid hsl(var(--accentCold), 0.5);
+  }
+}
 
 @media (width <= 767px) {
   main {
