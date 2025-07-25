@@ -219,7 +219,7 @@ textarea::-webkit-scrollbar-thumb {
 input[type="checkbox"] {
   accent-color: hsl(var(--accentCold));
   display: flex;
-  height: var(--gapOutside);
+  height: calc(var(--gapOutside) * 2);
   cursor: pointer;
 }
 /* MODALS */
@@ -288,6 +288,28 @@ dialog > form {
   gap: var(--gapOutside);
   width: 100%;
 }
+.priority-radio-set {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+input[type="radio"] {
+  accent-color: hsl(var(--accentCold));
+  display: flex;
+  width: calc(var(--gapOutside) * 2);
+  cursor: pointer;
+  outline: none;
+}
+.label-input-set.priority-input-container {
+  flex-direction: row;
+  justify-content: space-between;
+}
+fieldset{
+  border: none;
+}
+.priority-input-container label:hover{
+  cursor: pointer;
+}
 /* MEDIA QUERIES */
 
 /* @media (prefers-color-scheme: dark) {
@@ -296,7 +318,8 @@ dialog > form {
     --background: 222, 42%, 11%;
   }
   article::selection,
-  input::selection, textarea::selection {
+  input::selection,
+  textarea::selection {
     background-color: hsl(var(--accentWarm));
     color: hsl(var(--accentCold));
   }
@@ -342,7 +365,8 @@ dialog > form {
   dialog input {
     outline: 2px solid hsl(var(--accentCold), 0.5);
   }
-  dialog input:focus, textarea:focus {
+  dialog input:focus:not(input[type="radio"]),
+  textarea:focus {
     outline: 3px solid hsl(var(--accentCold));
   }
   .cancel-btn {
@@ -350,6 +374,9 @@ dialog > form {
   }
   ::backdrop {
     background-color: hsl(var(--accentCold), 0.5);
+  }
+  input[type="radio"] {
+    accent-color: hsl(var(--accentWarm));
   }
 } */
 

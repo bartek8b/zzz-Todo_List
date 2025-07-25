@@ -133,7 +133,9 @@
       </form>
     </dialog>
 
+    <!-- ------------- delete style ----------- -->
     <dialog class="modal-new-todo" style="display: block">
+      <!-- ------------- delete style ----------- -->
       <form method="dialog">
         <!-- PROJECT LIST -->
         <div class="label-input-set"></div>
@@ -166,19 +168,41 @@
         <!-- DUE DATE -->
         <div class="label-input-set">
           <label for="todo-duedate-input" class="font-title">Due date</label>
-          <input type="date" required/>
+          <input type="date" id="todo-duedate-input" required />
         </div>
 
         <!-- PRIORITY -->
-        <div class="label-input-set"></div>
+        <div class="label-input-set priority-input-container">
+          <legend class="font-title">Priority</legend>
+          <div class="priority-radio-set">
+            <input
+              type="radio"
+              name="priority"
+              value="low"
+              id="low-btn"
+              checked
+            />
+            <label for="low-btn">Low</label>
+          </div>
+          <div class="priority-radio-set">
+            <input
+              type="radio"
+              name="priority"
+              value="medium"
+              id="medium-btn"
+            />
+            <label for="medium-btn">Medium</label>
+          </div>
+          <div class="priority-radio-set">
+            <input type="radio" name="priority" value="high" id="high-btn" />
+            <label for="high-btn">High</label>
+          </div>
+        </div>
 
+        <!-- btns -->
         <div class="form-btns-container">
           <button type="submit" id="confirm-new-todo-btn">Confirm</button>
-          <button
-            type="button"
-            id="cancel-edited-project-btn"
-            class="cancel-btn"
-          >
+          <button type="button" id="cancel-new-todo-btn" class="cancel-btn">
             Cancel
           </button>
         </div>
