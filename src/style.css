@@ -200,6 +200,7 @@ main > article {
   overflow: auto;
   scrollbar-width: auto;
   scrollbar-color: hsl(var(--accentWarm));
+  padding: var(--gapOutside);
 }
 .description-para::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
