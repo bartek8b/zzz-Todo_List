@@ -4,6 +4,7 @@ import {
   deleteProject,
   editProject,
   createTodo,
+  editTodo,
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
@@ -15,8 +16,6 @@ const alertProjectExists = document.querySelector(".alert-project-exist");
 const btnOkProjectExists = document.querySelector(".ok-btn-project-exists");
 const projectsList = document.querySelector(".projects-list");
 
-const todosToDisplay = [];
-
 btnOkEmptyName.addEventListener("click", () => alertEmptyName.close());
 
 export function setEventListeners() {
@@ -24,9 +23,10 @@ export function setEventListeners() {
   deleteProjectFromList();
   changeProjectName();
   appendTodoIntoGrid();
+  editTodoBtn();
 }
 
-//PROJECTS
+// PROJECTS
 
 function appendProjectIntoList() {
   const modalNewProject = document.querySelector(".modal-new-project");
@@ -35,11 +35,11 @@ function appendProjectIntoList() {
   const confirmNewProject = document.querySelector("#confirm-new-project");
   const projectNameInput = document.querySelector("#project-name-input");
 
-  createNewProjectBtn.addEventListener("click", (e) => {
+  createNewProjectBtn.addEventListener("click", () => {
     modalNewProject.showModal();
   });
 
-  cancelNewProjectBtn.addEventListener("click", (e) => {
+  cancelNewProjectBtn.addEventListener("click", () => {
     modalNewProject.close();
     projectNameInput.value = "";
   });
@@ -80,16 +80,13 @@ function deleteProjectFromList() {
 
   projectsList.addEventListener("click", (e) => {
     const btn = e.target.closest(".delete-project-btn");
-    if (!btn) {
-      return;
-    }
-    projectIdToDelete = btn.dataset.id; //temp var.
+    if (!btn) return;
+    projectIdToDelete = btn.dataset.id;
     modalDelete.showModal();
   });
-  confirmBtn.addEventListener("click", (e) => {
-    if (!projectIdToDelete) {
-      return false;
-    }
+
+  confirmBtn.addEventListener("click", () => {
+    if (!projectIdToDelete) return false;
     const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
     if (!toBeDeleted) {
       modalDelete.close();
@@ -98,18 +95,15 @@ function deleteProjectFromList() {
     deleteProject(toBeDeleted.name);
     createProjectsList(projects);
     createGrid(projects);
-
-    projectIdToDelete = null; //temp clear
+    projectIdToDelete = null;
     modalDelete.close();
   });
 
-  cancelBtn.addEventListener("click", (e) => {
-    projectIdToDelete = null; //clear temp
+  cancelBtn.addEventListener("click", () => {
+    projectIdToDelete = null;
     modalDelete.close();
   });
 }
-
-// TODOS
 
 function changeProjectName() {
   const editedNameInput = document.querySelector("#edited-name-input");
@@ -125,10 +119,8 @@ function changeProjectName() {
 
   projectsList.addEventListener("click", (e) => {
     const btn = e.target.closest(".edit-project-btn");
-    if (!btn) {
-      return;
-    }
-    projectToEdit = btn.dataset.id; //temp var.
+    if (!btn) return;
+    projectToEdit = btn.dataset.id;
     const toBeEdited = spotItem(projects, "id", projectToEdit);
     editedNameInput.value = toBeEdited.name;
     modalEditProject.showModal();
@@ -142,17 +134,19 @@ function changeProjectName() {
       return false;
     }
     editProject(toBeEdited.name, editedNameInput.value);
-    projectToEdit = null; //temp clear
+    projectToEdit = null;
     modalEditProject.close();
     createProjectsList(projects);
     createGrid(projects);
   });
 
-  cancelEditedProject.addEventListener("click", (e) => {
-    projectToEdit = null; //temp clear
+  cancelEditedProject.addEventListener("click", () => {
+    projectToEdit = null;
     modalEditProject.close();
   });
 }
+
+// TODOS
 
 function appendTodoIntoGrid() {
   const newTodoBtn = document.querySelector(".create-todo-btn");
@@ -168,6 +162,9 @@ function appendTodoIntoGrid() {
   const alertTodoExists = document.querySelector(".alert-todo-exists");
   const okBtnTodoExists = document.querySelector(".ok-btn-todo-exists");
 
+  let isEditingTodo = false;
+  let todoToEdit = null;
+
   function clearForm() {
     title.value = "";
     description.value = "";
@@ -175,17 +172,19 @@ function appendTodoIntoGrid() {
     const lowRadio = document.querySelector(
       'input[name="priority"][value="low"]'
     );
-    if (lowRadio) {
-      lowRadio.checked = true;
-    }
+    if (lowRadio) lowRadio.checked = true;
+    projectName.value = "info-for-user";
+    isEditingTodo = false;
+    todoToEdit = null;
   }
 
-  newTodoBtn.addEventListener("click", (e) => {
+  newTodoBtn.addEventListener("click", () => {
     setProjectOptions();
+    clearForm();
     modalNewTodo.showModal();
   });
 
-  cancelBtn.addEventListener("click", (e) => {
+  cancelBtn.addEventListener("click", () => {
     modalNewTodo.close();
     clearForm();
   });
@@ -205,39 +204,97 @@ function appendTodoIntoGrid() {
         case "high":
           return 3;
         default:
-          console.error("Wrong priority:", priority);
           return 1;
       }
     }
-    if (projectName.value === "info-for-user" || !title.value.trim() || !dueDate.value) {
+    // CHECK IF REQUIRED DATA IS ENTERED
+    if (
+      projectName.value === "info-for-user" ||
+      !title.value.trim() ||
+      !dueDate.value
+    ) {
       alertEmptyFields.showModal();
       return false;
     }
-    if (
-      createTodo(
+
+    // FOR EDITING, TRIGGERED BY EDIT BTN ON TODO CARD
+    if (isEditingTodo && todoToEdit) {
+      const success = editTodo(
+        todoToEdit.projectName,
+        projectName.value,
+        todoToEdit.title,
+        title.value,
+        description.value,
+        dueDate.value,
+        priorityByNumber(priority)
+      );
+      if (success) {
+        createProjectsList(projects);
+        createGrid(projects);
+        clearForm();
+        modalNewTodo.close();
+      } else {
+        alertTodoExists.showModal();
+      }
+    }
+    // FOR CREATING NEW TODO, TRIGGERED BY + TODO BTN
+    else {
+      const success = createTodo(
         projectName.value,
         title.value,
         description.value,
         dueDate.value,
         priorityByNumber(priority)
-      )
-    ) {
-      createProjectsList(projects);
-      createGrid(projects);
-      clearForm();
-      modalNewTodo.close();
-    } else {
-      alertTodoExists.showModal();
+      );
+      if (success) {
+        createProjectsList(projects);
+        createGrid(projects);
+        clearForm();
+        modalNewTodo.close();
+      } else {
+        alertTodoExists.showModal();
+      }
     }
   });
 
-  okBtnEmptyFields.addEventListener("click", (e) => {
+  okBtnEmptyFields.addEventListener("click", () => {
     alertEmptyFields.close();
   });
 
-  okBtnTodoExists.addEventListener("click", (e) => {
+  okBtnTodoExists.addEventListener("click", () => {
     alertTodoExists.close();
   });
+
+  window.openEditTodoModal = function (todo, projectName) {
+    setProjectOptions();
+
+    const projectNameInput = document.querySelector("#todo-project-input");
+    const titleInput = document.querySelector("#todo-title-input");
+    const descriptionInput = document.querySelector("#todo-description-input");
+    const dueDateInput = document.querySelector("#todo-duedate-input");
+
+    projectNameInput.value = projectName;
+    titleInput.value = todo.title;
+    descriptionInput.value = todo.description;
+    dueDateInput.value = todo.dueDate;
+
+    // SWITCH PRIORITY FROM INT.(OBJECT PROP.) TO WORD (SET INPUT)
+    const priorities = {
+      1: "low",
+      2: "medium",
+      3: "high",
+    };
+    if (todo.priority) {
+      const radio = document.querySelector(
+        `input[name="priority"][value="${priorities[todo.priority]}"]`
+      );
+      if (radio) radio.checked = true;
+    }
+
+    isEditingTodo = true;
+    todoToEdit = { ...todo, projectName };
+    modalNewTodo.showModal();
+  };
 }
 
 function setProjectOptions() {
@@ -250,10 +307,23 @@ function setProjectOptions() {
   optionsContainer.innerHTML = pushHTML;
 }
 
-// TODOS ON CARDDS
+// TODOS ON CARDS
+
+function editTodoBtn() {
+  const gridContainer = document.querySelector(".grid-container");
+  if (!gridContainer) return;
+  gridContainer.addEventListener("click", (e) => {
+    const btn = e.target.closest(".edit-todo-btn");
+    if (!btn) return false;
+    for (const p of projects) {
+      const todoToEdit = p.todos.find((t) => t.id === btn.dataset.id);
+      if (todoToEdit) {
+        window.openEditTodoModal(todoToEdit, p.name);
+        return;
+      }
+    }
+  });
+}
 
 function deleteTodoBtn() {}
-
-function editTodoBtn() {}
-
 function updateChecked() {}
