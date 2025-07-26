@@ -165,6 +165,8 @@ function appendTodoIntoGrid() {
   const dueDate = document.querySelector("#todo-duedate-input");
   const alertEmptyFields = document.querySelector(".alert-empty-fields");
   const okBtnEmptyFields = document.querySelector(".ok-btn-empty-fields");
+  const alertTodoExists = document.querySelector(".alert-todo-exists");
+  const okBtnTodoExists = document.querySelector(".ok-btn-todo-exists");
 
   function clearForm() {
     title.value = "";
@@ -211,20 +213,30 @@ function appendTodoIntoGrid() {
       alertEmptyFields.showModal();
       return false;
     }
-    createTodo(
-      projectName.value,
-      title.value,
-      description.value,
-      dueDate.value,
-      priorityByNumber(priority)
-    );
-    createProjectsList(projects);
-    createGrid(projects);
-    clearForm();
-    modalNewTodo.close();
+    if (
+      createTodo(
+        projectName.value,
+        title.value,
+        description.value,
+        dueDate.value,
+        priorityByNumber(priority)
+      )
+    ) {
+      createProjectsList(projects);
+      createGrid(projects);
+      clearForm();
+      modalNewTodo.close();
+    } else {
+      alertTodoExists.showModal();
+    }
   });
+
   okBtnEmptyFields.addEventListener("click", (e) => {
     alertEmptyFields.close();
+  });
+
+  okBtnTodoExists.addEventListener("click", (e) => {
+    alertTodoExists.close();
   });
 }
 

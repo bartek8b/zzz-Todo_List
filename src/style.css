@@ -288,7 +288,8 @@ dialog > form {
 .form-btns-container > button,
 .ok-btn-empty-name,
 .ok-btn-project-exists,
-.ok-btn-empty-fields {
+.ok-btn-empty-fields,
+.ok-btn-todo-exists {
   width: max(150px, 10dvw);
 }
 .cancel-btn {
