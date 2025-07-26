@@ -209,7 +209,7 @@ function appendTodoIntoGrid() {
           return 1;
       }
     }
-    if (!projectName.value || !title.value.trim() || !dueDate.value) {
+    if (projectName.value === "info-for-user" || !title.value.trim() || !dueDate.value) {
       alertEmptyFields.showModal();
       return false;
     }
@@ -243,7 +243,7 @@ function appendTodoIntoGrid() {
 function setProjectOptions() {
   const optionsContainer = document.querySelector("#todo-project-input");
   optionsContainer.innerHTML = "";
-  let pushHTML = "";
+  let pushHTML = `<option value="info-for-user" selected disabled>---select project---</option>`;
   for (const p of projects) {
     pushHTML += `<option value="${p.name}">${p.name}</option>`;
   }
