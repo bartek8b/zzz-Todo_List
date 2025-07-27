@@ -148,6 +148,9 @@ function changeProjectName() {
 
 // TODOS
 
+let isEditingTodo = false;
+let todoToEdit = null;
+
 function appendTodoIntoGrid() {
   const newTodoBtn = document.querySelector(".create-todo-btn");
   const modalNewTodo = document.querySelector(".modal-new-todo");
@@ -161,9 +164,6 @@ function appendTodoIntoGrid() {
   const okBtnEmptyFields = document.querySelector(".ok-btn-empty-fields");
   const alertTodoExists = document.querySelector(".alert-todo-exists");
   const okBtnTodoExists = document.querySelector(".ok-btn-todo-exists");
-
-  let isEditingTodo = false;
-  let todoToEdit = null;
 
   function clearForm() {
     title.value = "";
@@ -311,7 +311,7 @@ function setProjectOptions() {
 
 function editTodoBtn() {
   const gridContainer = document.querySelector(".grid-container");
-  if (!gridContainer) return;
+  if (!gridContainer) return false;
   gridContainer.addEventListener("click", (e) => {
     const btn = e.target.closest(".edit-todo-btn");
     if (!btn) return false;
@@ -319,7 +319,7 @@ function editTodoBtn() {
       const todoToEdit = p.todos.find((t) => t.id === btn.dataset.id);
       if (todoToEdit) {
         window.openEditTodoModal(todoToEdit, p.name);
-        return;
+        return true;
       }
     }
   });
