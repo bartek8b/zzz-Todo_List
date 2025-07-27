@@ -313,6 +313,7 @@ function setProjectOptions() {
 
 function editTodoBtn() {
   const gridContainer = document.querySelector(".grid-container");
+
   if (!gridContainer) return false;
   gridContainer.addEventListener("click", (e) => {
     const btn = e.target.closest(".edit-todo-btn");
@@ -329,18 +330,36 @@ function editTodoBtn() {
 
 function deleteTodoBtn() {
   const gridContainer = document.querySelector(".grid-container");
-  if (!gridContainer) return;
+  const confirmModal = document.querySelector(".modal-delete-todo");
+  const confirmBtn = document.querySelector("#confirm-delete-todo");
+  const cancelBtn = document.querySelector("#cancel-delete-todo");
+  let btn;
+
   gridContainer.addEventListener("click", (e) => {
-    const btn = e.target.closest(".delete-todo-btn");
+    if (!gridContainer) return;
+    btn = e.target.closest(".delete-todo-btn");
     if (!btn) return false;
+
+    confirmModal.showModal();
+  });
+
+  cancelBtn.addEventListener("click", (e) => {
+    btn = null;
+    confirmModal.close();
+  });
+
+  confirmBtn.addEventListener("click", (e) => {
     for (const p of projects) {
       const todoToDelete = p.todos.find((t) => t.id === btn.dataset.id);
       if (todoToDelete) {
         deleteTodo(p.name, todoToDelete.title);
         createGrid(projects);
+        confirmModal.close();
         return true;
       }
     }
   });
 }
+
+
 function updateChecked() {}
