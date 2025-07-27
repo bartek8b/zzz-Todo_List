@@ -200,12 +200,12 @@ export function editChecked(projectName, title, checked) {
   return true;
 }
 
-function filterByProject(projectName) {
+export function filterByProject(projectName) {
   const project = spotItem(projects, "name", nameValidator(projectName));
   return project ? [project] : [];
 }
 
-function filterByPriority(array, priority) {
+export function filterByPriority(array, priority) {
   const todosByPriority = [];
   for (const p of array) {
     const filtered = p.todos.filter((t) => t.priority === priority);
@@ -214,7 +214,7 @@ function filterByPriority(array, priority) {
   return todosByPriority;
 }
 
-function filterLate(array) {
+export function filterLate(array) {
   const todosLate = [];
   const today = new Date();
   for (const p of array) {
@@ -228,7 +228,7 @@ function filterLate(array) {
   return todosLate;
 }
 
-function filterDay(array) {
+export function filterDay(array) {
   const todosDay = [];
   const today = new Date();
   for (const p of array) {
@@ -242,7 +242,7 @@ function filterDay(array) {
   return todosDay;
 }
 
-function filterWeek(array) {
+export function filterWeek(array) {
   const todosWeek = [];
   const today = new Date();
   for (const p of array) {

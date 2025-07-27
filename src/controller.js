@@ -384,3 +384,25 @@ function updateChecked() {
     return true;
   });
 }
+
+// FILTERS
+
+const arrayToDisplay = [];
+
+function sortTodos(){
+  arrayToDisplay.length = 0;
+  for(const p of projects){
+    for(const t of p.todos){
+      arrayToDisplay.push(t);
+    }
+  }
+  arrayToDisplay.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+function filteredGrid(){
+
+
+  
+
+
+}
