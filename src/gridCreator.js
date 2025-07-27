@@ -43,7 +43,7 @@ function createGridItem(
         return;
     }
   };
-  const isChecked = () => (checked ? "checked" : "");
+  const isChecked = checked ? "checked" : "";
 
   return `<div class="grid-item">
           <div class="data-set">
@@ -72,7 +72,7 @@ function createGridItem(
             <div class="data-set">
               <strong><label for="${id}" style="cursor: pointer;">Checked</label></strong>
               <br />
-              <input type="checkbox" ${isChecked()} id="${id}"/>
+               <input type="checkbox" id="${id}" data-id="${id}" ${isChecked}/>
             </div>
           </div>
           <div class="data-set card-btns-container">

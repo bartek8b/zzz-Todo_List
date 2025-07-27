@@ -9,7 +9,7 @@ function isProject(name) {
   return projects.some((p) => p.name === validName);
 }
 
-function setStorage(value) {
+export function setStorage(value) {
   const data = JSON.stringify(value);
   localStorage.setItem("data", data);
 }

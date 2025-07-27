@@ -6,6 +6,7 @@ import {
   createTodo,
   editTodo,
   deleteTodo,
+  setStorage,
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
@@ -26,6 +27,7 @@ export function setEventListeners() {
   appendTodoIntoGrid();
   editTodoBtn();
   deleteTodoBtn();
+  updateChecked();
 }
 
 // PROJECTS
@@ -361,5 +363,24 @@ function deleteTodoBtn() {
   });
 }
 
+function updateChecked() {
+  const gridContainer = document.querySelector(".grid-container");
 
-function updateChecked() {}
+  gridContainer.addEventListener("click", (e) => {
+    const checkbox = e.target.closest('input[type="checkbox"]');
+
+    if (!checkbox) return false;
+
+    let todo = null;
+    for (const p of projects) {
+      todo = p.todos.find((t) => t.id === checkbox.dataset.id);
+      if (todo) break;
+    }
+
+    if (!todo) return false;
+
+    todo.checked = checkbox.checked;
+    setStorage(projects);
+    return true;
+  });
+}
