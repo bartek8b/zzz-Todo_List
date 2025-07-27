@@ -94,7 +94,7 @@
 
     <dialog class="modal-delete-project" style="z-index: 999">
       <div class="centered-modal-content">
-        <p>This will delete project and inherit todos</p>
+        <p>This will permanently delete the project and its todos.</p>
         <div class="form-btns-container">
           <button type="submit" id="confirm-delete-project">Confirm</button>
           <button type="button" id="cancel-delete-project" class="cancel-btn">
@@ -224,6 +224,18 @@
       <div class="centered-modal-content">
         <p>Such todo already exists</p>
         <button class="ok-btn-todo-exists">OK</button>
+      </div>
+    </dialog>
+
+    <dialog class="modal-delete-todo" style="z-index: 999">
+      <div class="centered-modal-content">
+        <p>This will permanently delete todo</p>
+        <div class="form-btns-container">
+          <button type="submit" id="confirm-delete-todo">Confirm</button>
+          <button type="button" id="cancel-delete-todo" class="cancel-btn">
+            Cancel
+          </button>
+        </div>
       </div>
     </dialog>
 
