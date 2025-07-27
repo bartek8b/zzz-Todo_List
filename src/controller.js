@@ -5,6 +5,7 @@ import {
   editProject,
   createTodo,
   editTodo,
+  deleteTodo,
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
@@ -24,6 +25,7 @@ export function setEventListeners() {
   changeProjectName();
   appendTodoIntoGrid();
   editTodoBtn();
+  deleteTodoBtn();
 }
 
 // PROJECTS
@@ -325,5 +327,20 @@ function editTodoBtn() {
   });
 }
 
-function deleteTodoBtn() {}
+function deleteTodoBtn() {
+  const gridContainer = document.querySelector(".grid-container");
+  if (!gridContainer) return;
+  gridContainer.addEventListener("click", (e) => {
+    const btn = e.target.closest(".delete-todo-btn");
+    if (!btn) return false;
+    for (const p of projects) {
+      const todoToDelete = p.todos.find((t) => t.id === btn.dataset.id);
+      if (todoToDelete) {
+        deleteTodo(p.name, todoToDelete.title);
+        createGrid(projects);
+        return true;
+      }
+    }
+  });
+}
 function updateChecked() {}
