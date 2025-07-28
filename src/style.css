@@ -140,7 +140,7 @@ img {
 .header-btns-container > button {
   width: max(100px, 15dvw);
 }
-.checked {
+.filter-checked {
   outline: 2px solid hsl(var(--accentCold));
 }
 .prior-high {
@@ -356,7 +356,7 @@ input[type="radio"] {
   button:hover {
     background-color: hsl(var(--accentCold));
   }
-  .checked {
+  .filter-checked {
     outline: 2px solid hsl(var(--accentWarm));
   }
   img {

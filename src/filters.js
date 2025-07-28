@@ -16,6 +16,7 @@ const filters = {
 
 function filteredDisplay() {
   let toBeDisplayed = projects;
+  // projects are already sorted by name by the module execution.js when they added or modified
 
   if (filters.project) {
     toBeDisplayed = filterByProject(filters.project);
