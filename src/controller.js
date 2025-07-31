@@ -10,6 +10,7 @@ import {
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
+import { filteredDisplay, filtersListeners } from "./filters.js";
 import { projects } from "./data.js";
 
 const alertEmptyName = document.querySelector(".alert-empty-name");
@@ -28,6 +29,7 @@ export function setEventListeners() {
   editTodoBtn();
   deleteTodoBtn();
   updateChecked();
+  filtersListeners();
 }
 
 // PROJECTS
@@ -60,7 +62,7 @@ function appendProjectIntoList() {
 
     if (createProject(trimmedValue)) {
       createProjectsList(projects);
-      createGrid(projects);
+      createGrid(filteredDisplay());
       projectNameInput.value = "";
       modalNewProject.close();
     } else {
@@ -98,7 +100,7 @@ function deleteProjectFromList() {
     }
     deleteProject(toBeDeleted.name);
     createProjectsList(projects);
-    createGrid(projects);
+    createGrid(filteredDisplay());
     projectIdToDelete = null;
     modalDelete.close();
   });
@@ -141,7 +143,7 @@ function changeProjectName() {
     projectToEdit = null;
     modalEditProject.close();
     createProjectsList(projects);
-    createGrid(projects);
+    createGrid(filteredDisplay());
   });
 
   cancelEditedProject.addEventListener("click", () => {
@@ -234,7 +236,7 @@ function appendTodoIntoGrid() {
       );
       if (success) {
         createProjectsList(projects);
-        createGrid(projects);
+        createGrid(filteredDisplay());
         clearForm();
         modalNewTodo.close();
       } else {
@@ -252,7 +254,7 @@ function appendTodoIntoGrid() {
       );
       if (success) {
         createProjectsList(projects);
-        createGrid(projects);
+        createGrid(filteredDisplay());
         clearForm();
         modalNewTodo.close();
       } else {
@@ -355,7 +357,7 @@ function deleteTodoBtn() {
       const todoToDelete = p.todos.find((t) => t.id === btn.dataset.id);
       if (todoToDelete) {
         deleteTodo(p.name, todoToDelete.title);
-        createGrid(projects);
+        createGrid(filteredDisplay());
         confirmModal.close();
         return true;
       }

@@ -70,7 +70,7 @@ export function editProject(currentName, newName) {
     console.error("The project already exists");
     return false;
   }
-  if(!validNewName){
+  if (!validNewName) {
     return false;
   }
   project.name = validNewName;
@@ -200,58 +200,123 @@ export function editChecked(projectName, title, checked) {
   return true;
 }
 
-export function filterByProject(projectName) {
-  const project = spotItem(projects, "name", nameValidator(projectName));
-  return project ? [project] : [];
+export function filterByProject(array, projectName) {
+  // Jeśli mamy tablicę projektów
+  if (array.length && array[0].hasOwnProperty("todos")) {
+    const validName = nameValidator(projectName);
+    const project = array.find((p) => p.name === validName);
+    return project ? [project] : [];
+  } else {
+    // Tablica todosów
+    const validName = nameValidator(projectName);
+    return array.filter((t) => {
+      // Szukamy todosa w projekcie o zadanej nazwie
+      // Musimy znaleźć projekt, w którym ten todo jest
+      const parentProject = projects.find((p) =>
+        p.todos.some((todo) => todo.id === t.id)
+      );
+      return parentProject && parentProject.name === validName;
+    });
+  }
 }
 
 export function filterByPriority(array, priority) {
-  const todosByPriority = [];
-  for (const p of array) {
-    const filtered = p.todos.filter((t) => t.priority === priority);
-    todosByPriority.push(...filtered);
+  // Zamiana tekstu na liczbę:
+  let prioValue = priority;
+  if (typeof priority === "string") {
+    switch (priority.toLowerCase()) {
+      case "low":
+        prioValue = 1;
+        break;
+      case "medium":
+        prioValue = 2;
+        break;
+      case "high":
+        prioValue = 3;
+        break;
+      default:
+        prioValue = 1;
+    }
   }
-  return todosByPriority;
+  if (array.length && array[0].hasOwnProperty("todos")) {
+    // Tablica projektów
+    const todosByPriority = [];
+    for (const p of array) {
+      const filtered = p.todos.filter((t) => t.priority === prioValue);
+      todosByPriority.push(...filtered);
+    }
+    return todosByPriority;
+  } else {
+    // Tablica todosów
+    return array.filter((t) => t.priority === prioValue);
+  }
 }
 
 export function filterLate(array) {
-  const todosLate = [];
   const today = new Date();
-  for (const p of array) {
-    for (const t of p.todos) {
-      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      if (dayLeft < 0) {
-        todosLate.push(t);
+  if (array.length && array[0].hasOwnProperty("todos")) {
+    // Tablica projektów
+    const todosLate = [];
+    for (const p of array) {
+      for (const t of p.todos) {
+        const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+        if (dayLeft < 0) {
+          todosLate.push(t);
+        }
       }
     }
+    return todosLate;
+  } else {
+    // Tablica todosów
+    return array.filter((t) => {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      return dayLeft < 0;
+    });
   }
-  return todosLate;
 }
 
 export function filterDay(array) {
-  const todosDay = [];
   const today = new Date();
-  for (const p of array) {
-    for (const t of p.todos) {
-      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      if (dayLeft >= 0 && dayLeft < 1) {
-        todosDay.push(t);
+  if (array.length && array[0].hasOwnProperty("todos")) {
+    // Tablica projektów
+    const todosDay = [];
+    for (const p of array) {
+      for (const t of p.todos) {
+        const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+        if (dayLeft >= 0 && dayLeft < 1) {
+          todosDay.push(t);
+        }
       }
     }
+    return todosDay;
+  } else {
+    // Tablica todosów
+    return array.filter((t) => {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      return dayLeft >= 0 && dayLeft < 1;
+    });
   }
-  return todosDay;
 }
 
 export function filterWeek(array) {
-  const todosWeek = [];
   const today = new Date();
-  for (const p of array) {
-    for (const t of p.todos) {
-      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      if (dayLeft >= 0 && dayLeft < 7) {
-        todosWeek.push(t);
+  if (array.length && array[0].hasOwnProperty("todos")) {
+    // Tablica projektów
+    const todosWeek = [];
+    for (const p of array) {
+      for (const t of p.todos) {
+        const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+        if (dayLeft >= 0 && dayLeft < 7) {
+          todosWeek.push(t);
+        }
       }
     }
+    return todosWeek;
+  } else {
+    // Tablica todosów
+    return array.filter((t) => {
+      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
+      return dayLeft >= 0 && dayLeft < 7;
+    });
   }
-  return todosWeek;
 }

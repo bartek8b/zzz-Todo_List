@@ -141,7 +141,10 @@ img {
   width: max(100px, 15dvw);
 }
 .filter-checked {
-  outline: 2px solid hsl(var(--accentCold));
+  background-color: hsl(var(--accentCold), 0.5);
+}
+.filter-checked:hover {
+  background-color: hsl(var(--accentCold));
 }
 .prior-high {
   color: hsl(0, 100%, 50%, 0.7);
@@ -333,7 +336,7 @@ input[type="radio"] {
 
 /* MEDIA QUERIES */
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --font: 0, 0%, 80%;
     --background: 222, 42%, 11%;
@@ -357,7 +360,10 @@ input[type="radio"] {
     background-color: hsl(var(--accentCold));
   }
   .filter-checked {
-    outline: 2px solid hsl(var(--accentWarm));
+    background-color: hsl(var(--accentWarm), 0.5);
+  }
+  .filter-checked:hover {
+    background-color: hsl(var(--accentWarm));
   }
   img {
     filter: invert(80%);
@@ -406,7 +412,7 @@ input[type="radio"] {
   select {
     outline: 2px solid hsl(var(--accentCold), 0.5);
   }
-} */
+}
 
 @media (width <= 767px) {
   main {

@@ -5,6 +5,7 @@ import arrowUp from "./assets/arrow-up-bold.svg";
 import mediumPrior from "./assets/minus-thick.svg";
 import editIcon from "./assets/pencil.svg";
 import deleteIcon from "./assets/delete.svg";
+import { projects } from "./data.js";
 
 function assignPriorityIcon(priority) {
   switch (Number(priority)) {
@@ -85,24 +86,41 @@ function createGridItem(
 export function createGrid(arrayToDisplay) {
   gridContainer.innerHTML = "";
   let pushHTML = "";
-  for (const p of arrayToDisplay) {
-    for (const t of p.todos) {
-      const project = p.name;
-      const title = t.title;
-      const description = t.description;
-      const dueDate = t.dueDate;
-      const priority = t.priority;
-      const checked = t.checked;
-      const id = t.id;
 
+  // Tablica projektów:
+  if (
+    arrayToDisplay.length > 0 &&
+    arrayToDisplay[0].hasOwnProperty("todos")
+  ) {
+    for (const p of arrayToDisplay) {
+      for (const t of p.todos) {
+        pushHTML += createGridItem(
+          p.name,
+          t.title,
+          t.description,
+          t.dueDate,
+          t.priority,
+          t.checked,
+          t.id
+        );
+      }
+    }
+  } else {
+    // Tablica todosów:
+    for (const t of arrayToDisplay) {
+      // Jeśli chcesz wyświetlić nazwę projektu, musisz ją znaleźć po id todo!
+      // Zakładam, że todo nie ma projectName, więc musisz zrobić lookup:
+      const project = projects.find((p) =>
+        p.todos.some((todo) => todo.id === t.id)
+      );
       pushHTML += createGridItem(
-        project,
-        title,
-        description,
-        dueDate,
-        priority,
-        checked,
-        id
+        project ? project.name : "",
+        t.title,
+        t.description,
+        t.dueDate,
+        t.priority,
+        t.checked,
+        t.id
       );
     }
   }
