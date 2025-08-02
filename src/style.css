@@ -69,6 +69,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+
 /* MENU, SELECTORS, PROJECTS BUTTONS */
 main > aside {
   background-color: hsl(var(--background));
@@ -155,6 +156,7 @@ img {
 .prior-low {
   color: hsl(120, 100%, 25%, 0.7);
 }
+
 /* ARTICLE - TODOS GRID */
 main > article {
   background-color: hsl(var(--background), 0.9);
@@ -414,7 +416,7 @@ input[type="radio"] {
   }
 }
 
-@media (width <= 767px) {
+@media (width <= 600px) {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -425,4 +427,21 @@ input[type="radio"] {
   .grid-item {
     max-width: 100vw;
   }
+}
+
+/* KEY FRAMES */
+
+@keyframes intersect {
+  form {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intersect{
+  animation: intersect 0.5s linear forwards;
 }
