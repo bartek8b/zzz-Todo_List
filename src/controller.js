@@ -12,6 +12,7 @@ import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
 import { filteredDisplay, filtersListeners } from "./filters.js";
 import { projects } from "./data.js";
+import { filters } from "./filters.js";
 
 const alertEmptyName = document.querySelector(".alert-empty-name");
 const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
@@ -77,40 +78,6 @@ function appendProjectIntoList() {
   );
 }
 
-function deleteProjectFromList() {
-  const modalDelete = document.querySelector(".modal-delete-project");
-  const confirmBtn = document.querySelector("#confirm-delete-project");
-  const cancelBtn = document.querySelector("#cancel-delete-project");
-
-  let projectIdToDelete = null;
-
-  projectsList.addEventListener("click", (e) => {
-    const btn = e.target.closest(".delete-project-btn");
-    if (!btn) return;
-    projectIdToDelete = btn.dataset.id;
-    modalDelete.showModal();
-  });
-
-  confirmBtn.addEventListener("click", () => {
-    if (!projectIdToDelete) return false;
-    const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
-    if (!toBeDeleted) {
-      modalDelete.close();
-      return false;
-    }
-    deleteProject(toBeDeleted.name);
-    createProjectsList(projects);
-    createGrid(filteredDisplay());
-    projectIdToDelete = null;
-    modalDelete.close();
-  });
-
-  cancelBtn.addEventListener("click", () => {
-    projectIdToDelete = null;
-    modalDelete.close();
-  });
-}
-
 function changeProjectName() {
   const editedNameInput = document.querySelector("#edited-name-input");
   const modalEditProject = document.querySelector(".modal-edit-project");
@@ -142,6 +109,10 @@ function changeProjectName() {
     editProject(toBeEdited.name, editedNameInput.value);
     projectToEdit = null;
     modalEditProject.close();
+
+    // ZAWSZE zdejmij filtr po projekcie po edycji
+    filters.project = null;
+
     createProjectsList(projects);
     createGrid(filteredDisplay());
   });
@@ -149,6 +120,44 @@ function changeProjectName() {
   cancelEditedProject.addEventListener("click", () => {
     projectToEdit = null;
     modalEditProject.close();
+  });
+}
+
+function deleteProjectFromList() {
+  const modalDelete = document.querySelector(".modal-delete-project");
+  const confirmBtn = document.querySelector("#confirm-delete-project");
+  const cancelBtn = document.querySelector("#cancel-delete-project");
+
+  let projectIdToDelete = null;
+
+  projectsList.addEventListener("click", (e) => {
+    const btn = e.target.closest(".delete-project-btn");
+    if (!btn) return;
+    projectIdToDelete = btn.dataset.id;
+    modalDelete.showModal();
+  });
+
+  confirmBtn.addEventListener("click", () => {
+    if (!projectIdToDelete) return false;
+    const toBeDeleted = spotItem(projects, "id", projectIdToDelete);
+    if (!toBeDeleted) {
+      modalDelete.close();
+      return false;
+    }
+    deleteProject(toBeDeleted.name);
+
+    // AFTER DELETE PROJECT SET PROJECT BY FILTER TO NULL
+    filters.project = null;
+
+    createProjectsList(projects);
+    createGrid(filteredDisplay());
+    projectIdToDelete = null;
+    modalDelete.close();
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    projectIdToDelete = null;
+    modalDelete.close();
   });
 }
 

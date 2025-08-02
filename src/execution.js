@@ -201,17 +201,15 @@ export function editChecked(projectName, title, checked) {
 }
 
 export function filterByProject(array, projectName) {
-  // Jeśli mamy tablicę projektów
+  // ARRAY OF PROJECTS
   if (array.length && array[0].hasOwnProperty("todos")) {
     const validName = nameValidator(projectName);
     const project = array.find((p) => p.name === validName);
     return project ? [project] : [];
   } else {
-    // Tablica todosów
+    // ARRAY OF TODOS
     const validName = nameValidator(projectName);
     return array.filter((t) => {
-      // Szukamy todosa w projekcie o zadanej nazwie
-      // Musimy znaleźć projekt, w którym ten todo jest
       const parentProject = projects.find((p) =>
         p.todos.some((todo) => todo.id === t.id)
       );
@@ -221,41 +219,40 @@ export function filterByProject(array, projectName) {
 }
 
 export function filterByPriority(array, priority) {
-  // Zamiana tekstu na liczbę:
-  let prioValue = priority;
+  let priorityValue = priority;
   if (typeof priority === "string") {
     switch (priority.toLowerCase()) {
       case "low":
-        prioValue = 1;
+        priorityValue = 1;
         break;
       case "medium":
-        prioValue = 2;
+        priorityValue = 2;
         break;
       case "high":
-        prioValue = 3;
+        priorityValue = 3;
         break;
       default:
-        prioValue = 1;
+        priorityValue = 1;
     }
   }
   if (array.length && array[0].hasOwnProperty("todos")) {
-    // Tablica projektów
+    // ARRAY OF PROJECTS
     const todosByPriority = [];
     for (const p of array) {
-      const filtered = p.todos.filter((t) => t.priority === prioValue);
+      const filtered = p.todos.filter((t) => t.priority === priorityValue);
       todosByPriority.push(...filtered);
     }
     return todosByPriority;
   } else {
-    // Tablica todosów
-    return array.filter((t) => t.priority === prioValue);
+    // ARRAY OF TODOS
+    return array.filter((t) => t.priority === priorityValue);
   }
 }
 
 export function filterLate(array) {
   const today = new Date();
   if (array.length && array[0].hasOwnProperty("todos")) {
-    // Tablica projektów
+    // ARRAY OF PROJECTS
     const todosLate = [];
     for (const p of array) {
       for (const t of p.todos) {
@@ -267,7 +264,7 @@ export function filterLate(array) {
     }
     return todosLate;
   } else {
-    // Tablica todosów
+    // ARRAY OF TODOS
     return array.filter((t) => {
       const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
       return dayLeft < 0;
@@ -278,7 +275,7 @@ export function filterLate(array) {
 export function filterDay(array) {
   const today = new Date();
   if (array.length && array[0].hasOwnProperty("todos")) {
-    // Tablica projektów
+    // ARRAY OF PROJECTS
     const todosDay = [];
     for (const p of array) {
       for (const t of p.todos) {
@@ -290,7 +287,7 @@ export function filterDay(array) {
     }
     return todosDay;
   } else {
-    // Tablica todosów
+    // ARRAY OF TODOS
     return array.filter((t) => {
       const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
       return dayLeft >= 0 && dayLeft < 1;
@@ -301,7 +298,7 @@ export function filterDay(array) {
 export function filterWeek(array) {
   const today = new Date();
   if (array.length && array[0].hasOwnProperty("todos")) {
-    // Tablica projektów
+    // ARRAY OF PROJECTS
     const todosWeek = [];
     for (const p of array) {
       for (const t of p.todos) {
@@ -313,7 +310,7 @@ export function filterWeek(array) {
     }
     return todosWeek;
   } else {
-    // Tablica todosów
+    // ARRAY OF TODOS
     return array.filter((t) => {
       const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
       return dayLeft >= 0 && dayLeft < 7;

@@ -10,6 +10,8 @@ import { createGrid } from "./gridCreator.js";
 
 import { projects } from "./data.js";
 
+export { filters };
+
 const filters = {
   time: null,
   priority: null,
@@ -48,7 +50,6 @@ export function filtersListeners() {
 
   const timeFilters = document.querySelectorAll(".time-list button");
   const priorityFilters = document.querySelectorAll(".priority-list button");
-  // const projectsFilters = document.querySelectorAll(".projects-list button");
 
   timeFiltersContainer.addEventListener("click", (e) => {
     const filter = e.target.closest(".time-list button");
@@ -81,22 +82,27 @@ export function filtersListeners() {
   });
 
   projectsFiltersContainer.addEventListener("click", (e) => {
-  const filter = e.target.closest(".projects-list button");
-  if (!filter) return false;
+    const filter = e.target.closest(".projects-list button");
+    if (!filter) return false;
 
-  // Pobierz zawsze aktualne przyciski!
-  const projectsFilters = document.querySelectorAll(".projects-list button");
+    // DON'T HANDLE FILTER WHEN EDIT OR DELETE IS CLICKED
+    if (
+      filter.classList.contains("edit-project-btn") ||
+      filter.classList.contains("delete-project-btn")
+    ) {
+      return false;
+    }
 
-  if (filter.classList.contains("filter-checked")) {
-    // Jeśli kliknięty jest już zaznaczony, odznacz go i wyczyść filtr
-    filter.classList.remove("filter-checked");
-    filters.project = null;
-  } else {
-    // Odznacz wszystkie, zaznacz tylko kliknięty i ustaw filtr
-    projectsFilters.forEach((f) => f.classList.remove("filter-checked"));
-    filter.classList.add("filter-checked");
-    filters.project = filter.textContent;
-  }
-  createGrid(filteredDisplay());
-});
+    const projectsFilters = document.querySelectorAll(".projects-list button");
+
+    if (filter.classList.contains("filter-checked")) {
+      filter.classList.remove("filter-checked");
+      filters.project = null;
+    } else {
+      projectsFilters.forEach((f) => f.classList.remove("filter-checked"));
+      filter.classList.add("filter-checked");
+      filters.project = filter.textContent;
+    }
+    createGrid(filteredDisplay());
+  });
 }
