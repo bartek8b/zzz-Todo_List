@@ -251,13 +251,15 @@ export function filterByPriority(array, priority) {
 
 export function filterLate(array) {
   const today = new Date();
+  const todayString = today.toISOString().split("T")[0];
+
   if (array.length && array[0].hasOwnProperty("todos")) {
     // ARRAY OF PROJECTS
     const todosLate = [];
     for (const p of array) {
       for (const t of p.todos) {
-        const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-        if (dayLeft < 0) {
+        const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+        if (dueString < todayString) {
           todosLate.push(t);
         }
       }
@@ -266,8 +268,8 @@ export function filterLate(array) {
   } else {
     // ARRAY OF TODOS
     return array.filter((t) => {
-      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      return dayLeft < 0;
+      const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+      return dueString < todayString;
     });
   }
 }
@@ -305,13 +307,18 @@ export function filterDay(array) {
 
 export function filterWeek(array) {
   const today = new Date();
+  const todayString = today.toISOString().split("T")[0];
+  const weekAhead = new Date(today);
+  weekAhead.setDate(weekAhead.getDate() + 7);
+  const weekAheadString = weekAhead.toISOString().split("T")[0];
+
   if (array.length && array[0].hasOwnProperty("todos")) {
     // ARRAY OF PROJECTS
     const todosWeek = [];
     for (const p of array) {
       for (const t of p.todos) {
-        const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-        if (dayLeft >= 0 && dayLeft < 7) {
+        const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+        if (dueString >= todayString && dueString < weekAheadString) {
           todosWeek.push(t);
         }
       }
@@ -320,8 +327,8 @@ export function filterWeek(array) {
   } else {
     // ARRAY OF TODOS
     return array.filter((t) => {
-      const dayLeft = (new Date(t.dueDate) - today) / (1000 * 60 * 60 * 24);
-      return dayLeft >= 0 && dayLeft < 7;
+      const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+      return dueString >= todayString && dueString < weekAheadString;
     });
   }
 }

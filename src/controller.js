@@ -10,9 +10,9 @@ import {
 } from "./execution.js";
 import { createProjectsList } from "./projectsListCreator.js";
 import { createGrid } from "./gridCreator.js";
-import { filteredDisplay, filtersListeners } from "./filters.js";
+import { filteredDisplay, filtersListeners } from "./filtersListeners.js";
 import { projects } from "./data.js";
-import { filters } from "./filters.js";
+import { filters } from "./filtersListeners.js";
 
 const alertEmptyName = document.querySelector(".alert-empty-name");
 const btnOkEmptyName = document.querySelector(".ok-btn-empty-name");
