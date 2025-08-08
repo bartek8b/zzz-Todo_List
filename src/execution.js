@@ -276,17 +276,14 @@ export function filterLate(array) {
 
 export function filterDay(array) {
   const today = new Date();
+  const todayString = today.toISOString().split("T")[0];
   // ARRAY OF PROJECTS
   if (array.length && array[0].hasOwnProperty("todos")) {
     const todosDay = [];
     for (const p of array) {
       for (const t of p.todos) {
-        const dueDate = new Date(t.dueDate);
-        if (
-          dueDate.getFullYear() === today.getFullYear() &&
-          dueDate.getMonth() === today.getMonth() &&
-          dueDate.getDate() === today.getDate()
-        ) {
+        const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+        if (dueString === todayString) {
           todosDay.push(t);
         }
       }
@@ -295,12 +292,8 @@ export function filterDay(array) {
   } else {
     // ARRAY OF TODOS
     return array.filter((t) => {
-      const dueDate = new Date(t.dueDate);
-      return (
-        dueDate.getFullYear() === today.getFullYear() &&
-        dueDate.getMonth() === today.getMonth() &&
-        dueDate.getDate() === today.getDate()
-      );
+      const dueString = new Date(t.dueDate).toISOString().split("T")[0];
+      return dueString === todayString;
     });
   }
 }
