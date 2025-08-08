@@ -1,15 +1,23 @@
-# TODO CARDS APP
+# Todo Cards App
 
  Made as a part of [The Odin Project's](https://www.theodinproject.com/) Full Stack JavaScript path.
 
-## Goals
+ ### Live previev: [click!](https://bartek8b.github.io/zzz-Todo_List/)
+
+- Make todos as grid of cards
+
+### Goals
 
 - Make todos as grid of cards
 - Make sorting by date, priority, project
 - Establish a habit of dividing app engine from UI handling
-- Get comfortable in nusing webpack
+- Get comfortable in using webpack
 - Use localStorage to keep the entered data after page's refresh
 
-## Extra features
+### Extra features
 
 - Auto dark/light mode
+
+### Areas to improve
+
+- Add drag and drop functionality
