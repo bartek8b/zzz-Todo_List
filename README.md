@@ -4,8 +4,6 @@
 
  ### Live previev: [click!](https://bartek8b.github.io/zzz-Todo_List/)
 
-- Make todos as grid of cards
-
 ### Goals
 
 - Make todos as grid of cards
